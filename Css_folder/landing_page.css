@@ -63,3 +63,54 @@ button.btn:hover{
 	color: #efefef;
 	border: 1px solid #efefef;
 }
+
+.home .banner{
+	width: 100%;
+	min-height: 100vh;
+	padding: 100px 8% 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.home .banner .banner_description{
+	position: relative;
+	flex-basis: 50%;
+	max-width: 700px;
+	z-index: 2;
+}
+.banner .banner_description h2{
+	font-size: 48px;
+	color:#232d39;
+	letter-spacing: 1px;
+	line-height: 1.4;
+	margin-bottom: 10px;
+}
+.banner .banner_description p{
+	color: #232d39;
+	line-height: 1.4;
+	margin-bottom: 50px;
+}
+
+.home .banner .banner_img{
+	position: relative;
+	flex-basis: 50%;
+	display: flex;
+	justify-content: flex-end;
+	z-index: 1;
+}
+.banner_img .bannerImg_container{
+	position: relative;
+	width: 400px;
+	z-index: 2;
+}
+.banner_img .bannerImg_container img{
+	width: 100%;
+	height: auto;
+}
+.banner_img .bannerImg_container .states{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
