@@ -149,6 +149,7 @@ section.services{
 	color: #6c757d;
 	margin-bottom: 40px;
 	max-width: 700px;
+	line-height: 30px;
 }
 .services .service-contents{
 	width: 100%;
