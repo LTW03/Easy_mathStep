@@ -299,10 +299,10 @@ footer{
 	transition: 0.3s;
 }
 .footer_column h3 span{
-	color: #d694ff;
+	color: var(--primary-color);
 }
 .footer_column p:hover{
-	color: #d694ff;
+	color: var(--primary-color);
 }
 .footer_column p span{
 	font-weight: 600;
