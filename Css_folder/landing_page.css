@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
+:root {
+	--primary-color: #d694ff;
+	--primary-color-dark:#8034AF;
+	--primary-color-light:#5f0c923b;
+	--secondary-color: #fafcff;
+	--text-dark: #0d213f;
+	--text-color :#232d39;
+	--text-light: #767268;
+	--extra-light: #ffffff;
+	--light:#efefef;
+}
+
 .page-container{
 	width: 100%;
 	max-width: 1400px;
@@ -8,12 +21,12 @@ section.home{
 	position: relative;
 	width: 100%;
 	min-height: 100vh;
-	background-color:#5f0c923b;
+	background-color:var(--primary-color-light);
 }
 button.btn{
 	padding: 10px 18px;
-	background-color: #8034AF;
-	color: #efefef;
+	background-color: var(--primary-color-dark);
+	color: var(--light);
 	font-size: 15px;
 	border: 1px solid transparent;
 	border-radius: 5px;
@@ -21,9 +34,9 @@ button.btn{
 	transition: all 0.3s;
 }
 button.btn:hover{
-	background-color: #efefef;
-	color:#8034AF;
-	border: 1px solid #8034AF;
+	background-color: var(--light);
+	color: var(--primary-color-dark);
+	border: 1px solid var(--primary-color-dark);
 }
 .home .main-navbar{
 	position: absolute;
@@ -31,7 +44,7 @@ button.btn:hover{
 	max-width: 1400px;
 	height: 12vh;
 	max-height: 80px;
-	background-color: #8034AF;
+	background-color: var(--primary-color-dark);
 	padding: 0px 8%;
 	margin: 0px auto;
 	display: flex;
@@ -55,13 +68,13 @@ button.btn:hover{
 	height: auto;
 }
 .main-navbar .get-started-btn{
-	background-color: #efefef;
-	color: #8034AF;
+	background-color: var(--light);
+	color: var(--primary-color-dark);
 }
 .main-navbar .get-started-btn:hover{
-	background-color: #8034AF;
-	color: #efefef;
-	border: 1px solid #efefef;
+	background-color:var(--primary-color-dark);
+	color:  var(--light);
+	border: 1px solid  var(--light);
 }
 
 .home .banner{
@@ -80,14 +93,14 @@ button.btn:hover{
 }
 .banner .banner_description h2{
 	font-size: 80px;
-	color:#232d39;
+	color:var(--text-color);
 	letter-spacing: 1px;
 	line-height: 1.4;
 	margin-bottom: 10px;
 }
 .banner .banner_description p{
 	font-size: 20px;
-	color: #232d39;
+	color: var(--text-color);
 	line-height: 1.4;
 	margin-bottom: 50px;
 	text-align: justify;
@@ -124,7 +137,7 @@ section.services{
 	position: relative;
 	font-size: 32px;
 	letter-spacing: 1px;
-	color: #232d39;
+	color: var(--text-color);
 	margin-bottom: 20px;
 }
 .service-section_head h1::before{
@@ -143,7 +156,7 @@ section.services{
 	height: 3px;
 	left: 0;
 	top: calc(100% + 4px);
-	background-color:  #8034AF;
+	background-color: var(--primary-color-dark)
 }
 .service-section_head p{
 	color: #6c757d;
@@ -173,7 +186,7 @@ section.services{
 	justify-content: center;
 	align-items: center;
 	border-radius: 50%;
-	background-color: #8034AF;
+	background-color: var(--primary-color-dark);
 	outline: 1px solid #d8e9df;
 	outline-offset: 10px;
 }
@@ -186,7 +199,7 @@ section.services{
 }
 .service-box .service-desc h2{
 	margin-bottom: 10px;
-	color:  #232d39;
+	color:  var(--text-color);
 	font-size: 22px;
 }
 .service-box .service-desc p{
@@ -260,12 +273,60 @@ section.services{
 	font-weight: 600;
 	color:  #0d213f;
 	margin-bottom: 1rem;
+}
+footer{
+	background-color: var(--primary-color-dark);
+	font-family: 'Poppins';
+}
+.footer_container{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 5rem;
+	color: #fafcff;
+	max-width: 1200px;
+	margin: auto;
+	padding: 5rem 1rem;
+}
+.footer_column h3{
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 2rem;
+}
+.footer_column p{
+	font-size: 0.8rem;
+	margin-bottom: 1rem;
+	cursor: pointer;
+	transition: 0.3s;
+}
+.footer_column h3 span{
+	color: #d694ff;
+}
+.footer_column p:hover{
+	color: #d694ff;
+}
+.footer_column p span{
+	font-weight: 600;
+}
+.footer_column h4{
+	font-size: 1rem;
+	font-weight: 600;
+	margin-bottom: 2rem;
+}
+.footer__bar {
+	max-width: 1200px;
+	margin: auto;
+	padding: 0.5rem;
+	text-align: center;
+	font-size: 0.8rem;
+	color:var(--light);
+	border-top: 1px solid var(--text-light)
   }
 
 
 
 
-@media(max-width: 968px){
+
+@media(max-width: 1200px){
 	.home .banner{
 		flex-direction: column-reverse;
 		justify-content: flex-start;
