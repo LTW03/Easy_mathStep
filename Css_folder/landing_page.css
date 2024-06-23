@@ -215,6 +215,53 @@ section.services{
 .service-box:nth-child(1) .service-icon i{
 	color: #5a49f3; 
 }
+.learningMaterial-img_container {
+	max-width:  1200px;
+	margin: auto;
+	padding: 5rem 1rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2rem;
+}
+.learningMaterial_img{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+}
+.lm-img_column{
+	display: grid;
+	place-content: center;
+	gap: 1rem;
+}
+.lm-img_column img{
+	border-radius: 1rem;
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	display: block;
+}
+.content{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.content > div {
+	max-width: 400px;	
+}
+
+.content .section__subtitle {
+	margin-bottom: 2rem;
+	font-size: 1rem;
+	color:  #0d213f;
+	max-width: calc(1200px / 2);
+}
+.content__title {
+	font-size: 2rem;
+	font-weight: 600;
+	color:  #0d213f;
+	margin-bottom: 1rem;
+  }
+
 
 
 
