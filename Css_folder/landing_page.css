@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
 :root {
-	--primary-color: #d694ff;
-	--primary-color-dark:#8034AF;
-	--primary-color-light:#5f0c923b;
+	--primary-color: #b2ddf3;
+	--primary-color-dark:#0040B0;
+	/* --primary-color-light:#5f0c923b; */
+	--primary-color-light:#EDF9FF;
 	--secondary-color: #fafcff;
 	--text-dark: #0d213f;
 	--text-color :#232d39;
@@ -68,8 +69,8 @@ button.btn:hover{
 	height: auto;
 }
 .main-navbar .get-started-btn{
-	background-color: var(--light);
-	color: var(--primary-color-dark);
+	background-color: var(--primary-color-dark);
+	color: var(--light);
 }
 .main-navbar .get-started-btn:hover{
 	background-color:var(--primary-color-dark);
@@ -208,22 +209,22 @@ section.services{
 	text-align: justify;
 }
 .service-box:nth-child(3) .service-icon{
-	background-color: #fef0ef;
-	outline-color: #fef0ef;
+	background-color: #e7c5c2;
+	outline-color: #e7c5c2;
 }
 .service-box:nth-child(3) .service-icon i{
 	color: #f76250;
 }
 .service-box:nth-child(2) .service-icon{
-	background-color: #e8f9ef;
-	outline-color: #e8f9ef;
+	background-color: #a3dcbb;
+	outline-color: #a3dcbb;
 }
 .service-box:nth-child(2) .service-icon i{
 	color: #2f9355;
 }
 .service-box:nth-child(1) .service-icon{
-	background-color: #f1f0fe;
-	outline-color: #f1f0fe;
+	background-color: #ccc9fa;
+	outline-color: #ccc9fa;
 }
 .service-box:nth-child(1) .service-icon i{
 	color: #5a49f3; 
