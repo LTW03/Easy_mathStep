@@ -1,0 +1,262 @@
+/* this code is import the font from google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Variable CSS */
+:root{
+      --header-height: 3.5rem;
+      --nav-width: 219px;
+
+      /* Color */
+      --first-color: #267ce2;
+      --first-color-light: #d1efff;
+      --title-color: #19181b;
+      --text-color: #58555e;
+      --text-color-light: #a5a1aa;
+      --body-color: #f9f6fd;
+      --container-color: #ffffff;
+      --container-color-light: #f4f0fa;
+      
+      /* font and typhography */
+      --body-font: "Poppins", sans-serif;
+      --normal-font-size: .938rem;
+      --small-font-size: .75rem;
+      --smaller-font-size: .75rem;
+
+      /* font weight */
+      --font-medium-: 500;
+      --font-semi-bold-: 600;
+
+      /* z index */
+      --z-fixed: 100;
+}
+
+@media screen and (min-width: 1024px){
+      :root{
+            --normal-font-size--: 1rem;
+            --small-font-size--: .875em;
+            --smaller-font-size--: .813rem;
+      }
+}
+
+/* ===Base=== */
+*,::before,::after{
+      box-sizing:  border-box;
+}
+
+body{
+      margin: var(--header-height) 0 0 0;
+      padding: 1rem 1rem 0;
+      font-family: var(--body-font);
+      font-size: var(--normal-font-size);
+      background-color: var(--body-color);
+      color: var(--text-color);
+}
+
+h3{
+      margin: 0;
+}
+
+a{
+      text-decoration: none;
+}
+
+img{
+      max-width: 100%;
+      height:auto;
+}
+
+/* header */
+.header{
+      position: fixed;
+      top: 0px;
+      left: 10px;
+      width: 100%;
+      background-color: var(--container-color);
+      box-shadow: 0px 1px 0 rgb(22,8,43,.1);
+      padding: 0 1rem;
+      z-index: var(--z-fixed);
+}
+
+.header-container{
+      display: flex;
+      align-items: center;
+      height: var(--header-height);
+      justify-content: space-between;
+}
+
+.header-title{
+      color: var(--title-color);
+      font-size: var(--font-semi-bold-);
+}
+
+.header-search{
+      display: flex;
+      width: 300px;
+      padding: .40rem .75rem;
+      background-color: var(--container-color-light);
+      border-radius: .25rem;
+}
+
+.header-input{
+      width: 100%;
+      border: none;
+      outline: none;
+      background-color: var(--container-color-light);
+}
+
+.header-input::placeholder{
+      font-family: var(--body-font);
+      color: var(--text-color);
+}
+
+.header-icon,
+.headertoggle{
+      font-size: 1.2rem;
+}
+
+.headertoggle{
+      color: var(--title-color);
+      cursor: pointer;
+}
+.headertoggle:hover{
+      color: var(--first-color);
+}
+.create-class-btn{
+      color: white;
+      background-color: #267CE2;
+      padding: 5px 15px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+}
+.create-class-btn:hover {
+      background-color: #0056b3; /* Change background color on hover */
+}
+
+
+/* navigation sidebar */
+.nav{
+      position: fixed;
+      top: 0;
+      left: -100%;
+      height: 100vh;
+      padding: 1rem 1rem 3rem;
+      background-color: var(--container-color);
+      box-shadow: 1px 0 0 rgb(22, 8, 43,.1);
+      z-index: var(--z-fixed);
+      transition: .4s;
+}
+
+.nav-container{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: auto;
+}
+
+.logo-title{
+      line-height: 1;
+      color: var(--title-color);
+}
+
+.nav::-webkit-scrollbar{
+      display: none;
+}
+
+.nav-logo{
+      font-weight: var(--font-medium-);
+}
+
+.nav-list,
+.nav-item{
+      display: grid;
+}
+
+.nav-item{
+      row-gap: 1.5rem;
+}
+
+.nav-subtitle{
+      font-family: var(--normal-font-size);
+      text-transform: uppercase;
+      color: var(--title-color);
+      margin-bottom: 30px;
+}
+
+.nav-link{
+      display: flex;
+      align-items: center;
+      color: var(--text-color);
+}
+
+.nav-link:hover{
+      color: var(--first-color);
+      background-color: var(--first-color-light);
+}
+
+.nav-icon{
+      font-size: 2.5rem;
+      margin-right: .5rem;
+}
+
+.nav-name{
+      font-size: var(--font-size);
+      font-weight: var(--font-medium-);
+      white-space: nowrap;
+}
+
+/* show menu */
+.show-menu{
+      left: 0;
+}
+
+/* active link */
+.active{
+      color: var(--first-color);
+}
+
+/* Media queries */
+@media screen and (max-width:320px){
+      .header-search{
+            width: 70%;
+      }
+}
+@media screen and (min-width:1024px){
+      body{
+            padding: 1rem 3rem 0 6rem;
+      }
+      .header{
+            padding: 0 3rem 0 6rem;
+      }
+      .header-container{
+            height: calc(var(--header-height) + .5rem);
+            justify-content: space-between;
+            gap: 10px;
+      }
+      .header-title{
+            position: relative;
+            left: 15%;
+      }
+      .header-search{
+            width: 300px;
+            padding: .55rem .75rem;
+      }
+      .headertoggle{
+            display: none;
+      }
+
+      .nav{
+            left: 0;
+            padding: 1.2rem 1.5rem 3rem;
+            /* width: 68px; */
+      }
+      .nav-item{
+            row-gap: 1.7rem;
+      }
+
+      .nav-icon{
+            font-size: 1.3rem;
+      }
+} 
+

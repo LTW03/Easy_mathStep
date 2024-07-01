@@ -335,7 +335,7 @@ footer{
 
 
 
-@media(max-width: 1200px){
+@media(max-width: 1400px){
 	.home .banner{
 		flex-direction: column-reverse;
 		justify-content: flex-start;
