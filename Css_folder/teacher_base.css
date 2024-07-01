@@ -15,7 +15,7 @@
       --body-color: #f9f6fd;
       --container-color: #ffffff;
       --container-color-light: #f4f0fa;
-      
+
       /* font and typhography */
       --body-font: "Poppins", sans-serif;
       --normal-font-size: .938rem;
@@ -225,6 +225,7 @@ img{
 @media screen and (min-width:1024px){
       body{
             padding: 1rem 3rem 0 6rem;
+            margin-left: var(--nav-width);
       }
       .header{
             padding: 0 3rem 0 6rem;
