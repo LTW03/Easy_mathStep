@@ -25,3 +25,22 @@ function colorLink(){
 }
 
 linkColor.forEach(l => l.addEventListener('click',colorLink))
+
+// show pop up selection
+var btn = document.getElementById("create_btn");
+var popup = document.getElementById("create-popup");
+btn.onclick = function() {
+    popup.style.display = "block";
+}
+
+// close btn
+var span = document.getElementById("popup-close");
+span.onclick = function() {
+    popup.style.display = "none";
+}
+//user clicks outside the popup close
+window.onclick = function(event) {
+    if (event.target == popup) {
+        popup.style.display = "none";
+    }
+}
