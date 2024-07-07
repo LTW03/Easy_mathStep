@@ -32,7 +32,6 @@ CREATE TABLE `class` (
   `student_amount` int(11) DEFAULT NULL,
   `grade_level` char(10) DEFAULT NULL,
   `teacher_email` varchar(255) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
   `color_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -40,9 +39,9 @@ CREATE TABLE `class` (
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`class_id`, `student_amount`, `grade_level`, `teacher_email`, `student_id`, `color_id`) VALUES
-(1, 25, 'Grade 1', 'john.doe@example.com', 1, 1),
-(2, 30, 'Grade 2', 'jane.smith@example.com', 2, 2);
+INSERT INTO `class` (`class_id`, `student_amount`, `grade_level`, `teacher_email`, `color_id`) VALUES
+(1, 25, 'Grade 1', 'john.doe@example.com', 1),
+(2, 30, 'Grade 2', 'jane.smith@example.com', 2);
 
 -- --------------------------------------------------------
 
@@ -61,9 +60,23 @@ CREATE TABLE `color` (
 --
 
 INSERT INTO `color` (`color_id`, `color_name`, `hex_code`) VALUES
-(1, 'Red', '#FF0000'),
-(2, 'Green', '#00FF00'),
-(3, 'Blue', '#0000FF');
+(1, 'Black', '#000000'),
+(2, 'Orange', '#FFA500'),
+(3, 'Red', '#FF0000'),
+(4, 'Lime', '#00FF00'),
+(5, 'Blue', '#0000FF'),
+(6, 'Yellow', '#FFFF00'),
+(7, 'Cyan', '#00FFFF'),
+(8, 'Magenta', '#FF00FF'),
+(9, 'Gold', '#FFD700'),
+(10, 'MediumSlateBlue', '#7B68EE'),
+(11, 'Aquamarine', '#7FFFD4'),
+(12, 'Olive', '#808000'),
+(13, 'Green', '#008000'),
+(14, 'Purple', '#800080'),
+(15, 'Teal', '#008080'),
+(16, 'Navy', '#000080');
+
 
 -- --------------------------------------------------------
 
@@ -150,7 +163,9 @@ CREATE TABLE `question` (
 CREATE TABLE `student` (
   `student_id` int(11) NOT NULL,
   `student_stat` tinyint(1) DEFAULT NULL,
-  `student_name` char(100) DEFAULT NULL
+  `student_name` char(100) DEFAULT NULL,
+  `character_id` int(11) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -205,7 +220,18 @@ CREATE TABLE `words` (
   `word_id` int(11) NOT NULL,
   `word_text` text DEFAULT NULL,
   `is_encouragement` tinyint(4) DEFAULT NULL,
-  `lesson_id` int(11) DEFAULT NULL
+  `question_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `character`
+--
+CREATE TABLE `character`(
+  `character_id` int(11) NOT NULL,
+  `character_path` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -218,7 +244,6 @@ CREATE TABLE `words` (
 ALTER TABLE `class`
   ADD PRIMARY KEY (`class_id`),
   ADD KEY `teacher_email` (`teacher_email`),
-  ADD KEY `student_id` (`student_id`),
   ADD KEY `color_id` (`color_id`);
 
 --
@@ -273,7 +298,9 @@ ALTER TABLE `question`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`student_id`);
+  ADD PRIMARY KEY (`student_id`),
+  ADD KEY `class_id`(`class_id`),
+  ADD KEY `character_id`(`character_id`);
 
 --
 -- Indexes for table `teacher`
@@ -293,7 +320,13 @@ ALTER TABLE `true_false_options`
 --
 ALTER TABLE `words`
   ADD PRIMARY KEY (`word_id`),
-  ADD KEY `lesson_id` (`lesson_id`);
+  ADD KEY `question_id` (`question_id`);
+
+--
+-- Indexes for table `character`
+--
+ALTER TABLE `character`
+  ADD PRIMARY KEY (`character_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -366,6 +399,12 @@ ALTER TABLE `words`
   MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `character`
+--
+ALTER TABLE `character`
+  MODIFY `character_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -374,7 +413,6 @@ ALTER TABLE `words`
 --
 ALTER TABLE `class`
   ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`),
-  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
   ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`);
 
 --
@@ -413,7 +451,15 @@ ALTER TABLE `true_false_options`
 -- Constraints for table `words`
 --
 ALTER TABLE `words`
-  ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`);
+  ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
+COMMIT;
+
+--
+-- Constraint for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `student_ibfk_1`FOREIGN KEY(`class_id`) REFERENCES `class` (`class_id`),
+  ADD CONSTRAINT `student_ibfk_2`FOREIGN KEY(`character_id`) REFERENCES `character` (`character_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
