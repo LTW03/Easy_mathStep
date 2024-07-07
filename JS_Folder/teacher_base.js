@@ -44,3 +44,58 @@ window.onclick = function(event) {
         popup.style.display = "none";
     }
 }
+//logout
+document.addEventListener("DOMContentLoaded", function() {
+    const logoutLink = document.querySelector(".bx-log-out").parentElement;
+
+    logoutLink.addEventListener("click", function(event) {
+          event.preventDefault();
+
+          // Create popup elements
+          const popup = document.createElement("div");
+          popup.id = "logout";
+          popup.className = "logout";
+
+          const popupContent = document.createElement("div");
+          popupContent.className = "logout-content";
+
+          const popupText = document.createElement("p");
+          popupText.innerText = "Do you want to log out?";
+
+          const yesBtn = document.createElement("button");
+          yesBtn.id = "logout-yes-btn";
+          yesBtn.innerText = "Yes";
+
+          const noBtn = document.createElement("button");
+          noBtn.id = "logout-no-btn";
+          noBtn.innerText = "No";
+
+          // Append elements to popup
+          popupContent.appendChild(popupText);
+          popupContent.appendChild(yesBtn);
+          popupContent.appendChild(noBtn);
+          popup.appendChild(popupContent);
+          document.body.appendChild(popup);
+
+          // Show popup
+          popup.style.display = "block";
+
+          yesBtn.addEventListener("click", function() {
+                // Perform the logout action here
+                window.location.href = "page2.html";
+                document.body.removeChild(popup);
+                
+          });
+
+          noBtn.addEventListener("click", function() {
+                document.body.removeChild(popup);
+          });
+
+          // Close the popup if the user clicks outside of it
+          window.addEventListener("click", function(event) {
+                if (event.target == popup) {
+                      document.body.removeChild(popup);
+                }
+          });
+    });
+});
