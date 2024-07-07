@@ -354,35 +354,35 @@ img{
 }
 
 /* Pop-up styles */
-.popup {
+.logout {
       display: none; 
-      position: fixed; 
-      z-index: 1; 
-      left: 20; 
-      top: 30px; 
+      position: fixed;
+      left: 0; 
+      top: 80px; 
       width: 100%; 
       height: 100%; 
-      overflow: auto; 
+      overflow: auto;
+      z-index: 1000;
 }
 
-.popup-content {
+.logout-content {
       background-color: #fff;
-      margin: 15% auto; 
+      margin: 13% auto; 
       padding: 40px; 
       border: 1px solid #ccc; 
       width: 500px; 
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       border-radius: 8px;
+
 }
 
-.popup-content p {
+.logout-content p {
       margin-bottom: 20px;
       font-size: 25px;
       color: #333;
 }
 
-.popup-content button {
+.logout-content button {
       background-color: #0056b1;
       color: #fff;
       border: none;
@@ -394,15 +394,15 @@ img{
       transition: background-color 0.3s ease;
 }
 
-.popup-content button:hover {
+.logout-content button:hover {
       background-color: #2079d7;
 }
 
-.popup-content #no-btn {
+.logout-content #logout-no-btn {
       background-color: #A00000;
 }
 
-.popup-content #no-btn:hover {
+.logout-content #logout-no-btn:hover {
       background-color: #cc1a1a;
 }
 

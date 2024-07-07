@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
           yesBtn.addEventListener("click", function() {
                 // Perform the logout action here
-                window.location.href = "page2.html";
+                window.location.href = "landing_page.html";
                 document.body.removeChild(popup);
                 
           });
