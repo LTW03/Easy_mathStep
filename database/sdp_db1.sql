@@ -124,6 +124,7 @@ CREATE TABLE `droppable` (
 CREATE TABLE `lesson` (
   `lesson_id` int(11) NOT NULL,
   `subjects` char(100) DEFAULT NULL,
+  `teacher_email` varchar(255) DEFAULT NULL,
   `class_id` int(11) DEFAULT NULL,
   `date_changes` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -279,6 +280,7 @@ ALTER TABLE `droppable`
 --
 ALTER TABLE `lesson`
   ADD PRIMARY KEY (`lesson_id`),
+  ADD KEY `teacher email` (`teacher_email`),
   ADD KEY `class_id` (`class_id`);
 
 --
@@ -413,7 +415,7 @@ ALTER TABLE `character`
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`),
+  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`);
 
 --
@@ -428,7 +430,8 @@ ALTER TABLE `dragdropmapping`
 -- Constraints for table `lesson`
 --
 ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lesson_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
 
 --
 -- Constraints for table `mcq_answer`
