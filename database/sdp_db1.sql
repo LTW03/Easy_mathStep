@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `class` (
   `class_id` int(11) NOT NULL,
+  `class_name` varchar(255) DEFAULT NULL,
   `student_amount` int(11) DEFAULT NULL,
   `grade_level` char(10) DEFAULT NULL,
   `teacher_email` varchar(255) DEFAULT NULL,

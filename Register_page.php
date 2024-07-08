@@ -69,7 +69,7 @@ session_start();
         <img class="rocket-pic" src="./src/login_register_page/image 15.png" width="1000" height="400">
     </div>
 
-    <script src="register_validation.js">
+    <script>
         function togglePasswordVisibility(passwordId, icon) {
             const passwordField = document.getElementById(passwordId);
             if (passwordField.type === "password") {
