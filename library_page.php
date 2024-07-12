@@ -1,13 +1,14 @@
 <!-- login validation -->
 <?php
-// include('conn.php');
-// $user_email = $_COOKIE['user'];
+include('conn.php');
+$user_email = $_COOKIE['user_email'];
 
-// if ($user_email == NULL ){
-//     header("Location: ./Login_page.php");
-//     exit();
-// }
+if ($user_email == NULL ){
+    header("Location: ./Login_page.php");
+    exit();
+}
 ?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

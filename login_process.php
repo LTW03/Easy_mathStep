@@ -16,9 +16,9 @@ if(isset($_POST['_login'])){
         $user_name = $row['teacher_name'];
         //set cookie for 30 days
         setcookie("user_email", $login_email, time() + (86400 * 30), "/"); // 86400 = 1 day
-        echo "<script type = 'text/javascript'> alert('Login Succesfull'); document.location = './library_page.php' </script>";
+        echo "<script type = 'text/javascript'> alert('Login Succesfull'); document.location = 'library_page.php' </script>";
     }else{
-        echo "<script type = 'text/javascript'> alert('Invalid Username or Password!'); document.location = './Login_page.php' </script>";
+        echo "<script type = 'text/javascript'> alert('Invalid Username or Password!'); document.location = 'Login_page.php' </script>";
     }
 }
 $conn->close();
