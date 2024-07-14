@@ -31,7 +31,6 @@ CREATE TABLE `class` (
   `class_id` int(11) NOT NULL,
   `class_name` varchar(255) DEFAULT NULL,
   `student_amount` int(11) DEFAULT NULL,
-  `grade_level` char(10) DEFAULT NULL,
   `teacher_email` varchar(255) DEFAULT NULL,
   `color_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -40,9 +39,9 @@ CREATE TABLE `class` (
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`class_id`, `student_amount`, `grade_level`, `teacher_email`, `color_id`) VALUES
-(1, 25, 'Grade 1', 'john.doe@example.com', 1),
-(2, 30, 'Grade 2', 'jane.smith@example.com', 2);
+INSERT INTO `class` (`class_id`, `student_amount`, `teacher_email`, `color_id`) VALUES
+(1, 25, 'john.doe@example.com', 1),
+(2, 30, 'jane.smith@example.com', 2);
 
 -- --------------------------------------------------------
 
@@ -163,9 +162,10 @@ CREATE TABLE `question` (
 --
 
 CREATE TABLE `student` (
-  `student_id` int(11) NOT NULL,
+  `student_email` varchar(255) NOT NULL,
   `student_stat` tinyint(1) DEFAULT NULL,
-  `student_name` char(100) DEFAULT NULL,
+  `student_fname` char(100) DEFAULT NULL,
+  `student_lname` char(100) DEFAULT NULL,
   `character_id` int(11) DEFAULT NULL,
   `class_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -174,9 +174,9 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_id`, `student_stat`, `student_name`) VALUES
-(1, 1, 'Alice Johnson'),
-(2, 0, 'Bob Brown');
+INSERT INTO `student` (`student_email`, `student_stat`, `student_fname`, `student_lname`) VALUES
+('alicedaddy@gmail.com', 1, 'Alice Johnson','Johnson'),
+('bobmommy@gmail.com', 0, 'Bob','Brown');
 
 -- --------------------------------------------------------
 
@@ -236,6 +236,12 @@ CREATE TABLE `character`(
   `character_path` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+CREATE TABLE `completion`(
+  `lesson_id` int(11) NOT NULL,
+  `student_email` varchar(255) NOT NULL,
+  `completion_status` tinyint(1)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Indexes for dumped tables
 --
@@ -280,7 +286,7 @@ ALTER TABLE `droppable`
 --
 ALTER TABLE `lesson`
   ADD PRIMARY KEY (`lesson_id`),
-  ADD KEY `teacher email` (`teacher_email`),
+  ADD KEY `teacher_email` (`teacher_email`),
   ADD KEY `class_id` (`class_id`);
 
 --
@@ -301,9 +307,8 @@ ALTER TABLE `question`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`student_id`),
-  ADD KEY `class_id`(`class_id`),
-  ADD KEY `character_id`(`character_id`);
+  ADD PRIMARY KEY (`student_email`),
+  ADD KEY `class_id` (`class_id`);
 
 --
 -- Indexes for table `teacher`
@@ -332,80 +337,11 @@ ALTER TABLE `character`
   ADD PRIMARY KEY (`character_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indexes for table `completion`
 --
-
---
--- AUTO_INCREMENT for table `class`
---
-ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `color`
---
-ALTER TABLE `color`
-  MODIFY `color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `dragdropmapping`
---
-ALTER TABLE `dragdropmapping`
-  MODIFY `mapping_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `draggable_options`
---
-ALTER TABLE `draggable_options`
-  MODIFY `drag_option_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `droppable`
---
-ALTER TABLE `droppable`
-  MODIFY `droppable_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `lesson`
---
-ALTER TABLE `lesson`
-  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `mcq_answer`
---
-ALTER TABLE `mcq_answer`
-  MODIFY `mcq_answer_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `question`
---
-ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `student`
---
-ALTER TABLE `student`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `true_false_options`
---
-ALTER TABLE `true_false_options`
-  MODIFY `tfoption_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `words`
---
-ALTER TABLE `words`
-  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `character`
---
-ALTER TABLE `character`
-  MODIFY `character_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `completion`
+  ADD PRIMARY KEY (`lesson_id`,`student_email`),
+  ADD KEY `student_email` (`student_email`);
 
 --
 -- Constraints for dumped tables
@@ -415,8 +351,15 @@ ALTER TABLE `character`
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `class_ibfk_3` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`);
+  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`),
+  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`);
+
+--
+-- Constraints for table `completion`
+--
+ALTER TABLE `completion`
+  ADD CONSTRAINT `completion_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`),
+  ADD CONSTRAINT `completion_ibfk_2` FOREIGN KEY (`student_email`) REFERENCES `student` (`student_email`);
 
 --
 -- Constraints for table `dragdropmapping`
@@ -430,7 +373,7 @@ ALTER TABLE `dragdropmapping`
 -- Constraints for table `lesson`
 --
 ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`),
   ADD CONSTRAINT `lesson_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
 
 --
@@ -446,6 +389,12 @@ ALTER TABLE `question`
   ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`);
 
 --
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
+
+--
 -- Constraints for table `true_false_options`
 --
 ALTER TABLE `true_false_options`
@@ -456,16 +405,9 @@ ALTER TABLE `true_false_options`
 --
 ALTER TABLE `words`
   ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
-COMMIT;
-
---
--- Constraint for table `student`
---
-ALTER TABLE `student`
-  ADD CONSTRAINT `student_ibfk_1`FOREIGN KEY(`class_id`) REFERENCES `class` (`class_id`),
-  ADD CONSTRAINT `student_ibfk_2`FOREIGN KEY(`character_id`) REFERENCES `character` (`character_id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+COMMIT;
