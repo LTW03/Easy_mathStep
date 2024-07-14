@@ -35,7 +35,9 @@
                 </div>
                 <div class="remember-me-forgot">
                     <label> <input type="checkbox">Remember Me</label>
-                    <a href="#">Forgot password?</a>
+                    <a href="Forget_pass-page.html">
+                        Forgot password?
+                    </a>
                 </div>
                 <button name="_login" type="submit" class="btn">Login</button>
                 <div class="register-link">

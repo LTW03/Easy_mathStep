@@ -73,7 +73,7 @@ function renumberQuestions() {
 
 function saveQuiz(event) {
     event.preventDefault();
-    // Submit the form using JavaScript
+    // Submit the form
     const quizForm = document.getElementById('quizForm');
     quizForm.submit();
 }
