@@ -29,7 +29,7 @@ body {
 .back_btn .backBtn_icon {
     height: 40px;
     width: 40px;
-    border: solid var(--title-color);
+    border: 2px solid var(--title-color);
     border-radius: 12px;
 }
 .header {
@@ -79,8 +79,6 @@ body {
     border: none;
     transition-duration: .3s;
 }
-
-
 .centralize_form {
     display: flex;
     justify-content: space-around;
@@ -151,20 +149,29 @@ body {
     margin-bottom: 1rem;
 }
 .options-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
 .option {
     display: flex;
-    align-items: center;
-    gap: 5px;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 .option input[type="radio"] {
-    margin-right: 5px;
+    align-self: center;
+    margin-bottom: 10px;
 }
 .option input[type="text"] {
     flex: 1;
+    padding: 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.option input[type="file"] {
     padding: 8px;
     border: 1px solid var(--input-border);
     border-radius: 4px;
