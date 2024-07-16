@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2024 at 04:11 PM
+-- Generation Time: Jul 16, 2024 at 03:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `character`
+--
+
+CREATE TABLE `character` (
+  `character_id` int(11) NOT NULL,
+  `character_path` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `character`
+--
+
+INSERT INTO `character` (`character_id`, `character_path`) VALUES
+(1, 'delapouite/unicorn.png'),
+(2, 'delapouite/charging-bull.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `class`
 --
 
@@ -39,9 +58,9 @@ CREATE TABLE `class` (
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`class_id`, `student_amount`, `teacher_email`, `color_id`) VALUES
-(1, 25, 'john.doe@example.com', 1),
-(2, 30, 'jane.smith@example.com', 2);
+INSERT INTO `class` (`class_id`, `class_name`, `student_amount`, `teacher_email`, `color_id`) VALUES
+(1, 'chinchin', 25, 'john.doe@example.com', 1),
+(2, 'tingting', 30, 'jane.smith@example.com', 2);
 
 -- --------------------------------------------------------
 
@@ -77,6 +96,17 @@ INSERT INTO `color` (`color_id`, `color_name`, `hex_code`) VALUES
 (15, 'Teal', '#008080'),
 (16, 'Navy', '#000080');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `completion`
+--
+
+CREATE TABLE `completion` (
+  `lesson_id` int(11) NOT NULL,
+  `student_email` varchar(255) NOT NULL,
+  `completion_status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -166,6 +196,7 @@ CREATE TABLE `student` (
   `student_stat` tinyint(1) DEFAULT NULL,
   `student_fname` char(100) DEFAULT NULL,
   `student_lname` char(100) DEFAULT NULL,
+  `gender` text DEFAULT NULL,
   `character_id` int(11) DEFAULT NULL,
   `class_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -174,9 +205,9 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`student_email`, `student_stat`, `student_fname`, `student_lname`) VALUES
-('alicedaddy@gmail.com', 1, 'Alice Johnson','Johnson'),
-('bobmommy@gmail.com', 0, 'Bob','Brown');
+INSERT INTO `student` (`student_email`, `student_stat`, `student_fname`, `student_lname`, `gender`, `character_id`, `class_id`) VALUES
+('alicedaddy@gmail.com', 1, 'Alice', 'Johnson', 'Female', NULL, NULL),
+('bobmommy@gmail.com', 0, 'Bob', 'Brown', 'Male', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -208,7 +239,6 @@ INSERT INTO `teacher` (`teacher_email`, `password`, `teacher_name`, `teacher_num
 CREATE TABLE `true_false_options` (
   `tfoption_id` int(11) NOT NULL,
   `question_id` int(11) DEFAULT NULL,
-  `tfoption_audio` varchar(255) DEFAULT NULL,
   `is_true` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -225,26 +255,15 @@ CREATE TABLE `words` (
   `question_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `character`
---
-CREATE TABLE `character`(
-  `character_id` int(11) NOT NULL,
-  `character_path` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
-CREATE TABLE `completion`(
-  `lesson_id` int(11) NOT NULL,
-  `student_email` varchar(255) NOT NULL,
-  `completion_status` tinyint(1)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `character`
+--
+ALTER TABLE `character`
+  ADD PRIMARY KEY (`character_id`);
 
 --
 -- Indexes for table `class`
@@ -259,6 +278,13 @@ ALTER TABLE `class`
 --
 ALTER TABLE `color`
   ADD PRIMARY KEY (`color_id`);
+
+--
+-- Indexes for table `completion`
+--
+ALTER TABLE `completion`
+  ADD PRIMARY KEY (`lesson_id`,`student_email`),
+  ADD KEY `student_email` (`student_email`);
 
 --
 -- Indexes for table `dragdropmapping`
@@ -308,6 +334,7 @@ ALTER TABLE `question`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`student_email`),
+  ADD KEY `character_id` (`character_id`),
   ADD KEY `class_id` (`class_id`);
 
 --
@@ -331,17 +358,74 @@ ALTER TABLE `words`
   ADD KEY `question_id` (`question_id`);
 
 --
--- Indexes for table `character`
+-- AUTO_INCREMENT for dumped tables
 --
-ALTER TABLE `character`
-  ADD PRIMARY KEY (`character_id`);
 
 --
--- Indexes for table `completion`
+-- AUTO_INCREMENT for table `character`
 --
-ALTER TABLE `completion`
-  ADD PRIMARY KEY (`lesson_id`,`student_email`),
-  ADD KEY `student_email` (`student_email`);
+ALTER TABLE `character`
+  MODIFY `character_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `color`
+--
+ALTER TABLE `color`
+  MODIFY `color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `dragdropmapping`
+--
+ALTER TABLE `dragdropmapping`
+  MODIFY `mapping_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `draggable_options`
+--
+ALTER TABLE `draggable_options`
+  MODIFY `drag_option_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `droppable`
+--
+ALTER TABLE `droppable`
+  MODIFY `droppable_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lesson`
+--
+ALTER TABLE `lesson`
+  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mcq_answer`
+--
+ALTER TABLE `mcq_answer`
+  MODIFY `mcq_answer_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `question`
+--
+ALTER TABLE `question`
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `true_false_options`
+--
+ALTER TABLE `true_false_options`
+  MODIFY `tfoption_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `words`
+--
+ALTER TABLE `words`
+  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -392,7 +476,8 @@ ALTER TABLE `question`
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
-  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
+  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`),
+  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`character_id`) REFERENCES `character` (`character_id`);
 
 --
 -- Constraints for table `true_false_options`
@@ -405,9 +490,8 @@ ALTER TABLE `true_false_options`
 --
 ALTER TABLE `words`
   ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-COMMIT;
