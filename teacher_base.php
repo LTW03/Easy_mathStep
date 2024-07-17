@@ -1,5 +1,5 @@
 <?php
-include('page_validation.php');
+include('Teacher_loginValidate.php');
 ?>  
   <!-- Header -->
       <header class="header">
