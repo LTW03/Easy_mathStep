@@ -21,18 +21,22 @@ function addQuestion() {
             <div class="option">
                 <input type="radio" name="correctAnswer${questionCount}" value="option${questionCount}_1" required>
                 <input type="text" id="option${questionCount}_1" name="option${questionCount}_1" placeholder="Option 1" required>
+                <input type="file" id="option${questionCount}_1_audio" name="option${questionCount}_1_audio" accept="audio/*">
             </div>
             <div class="option">
                 <input type="radio" name="correctAnswer${questionCount}" value="option${questionCount}_2">
                 <input type="text" id="option${questionCount}_2" name="option${questionCount}_2" placeholder="Option 2" required>
+                <input type="file" id="option${questionCount}_2_audio" name="option${questionCount}_2_audio" accept="audio/*">
             </div>
             <div class="option">
                 <input type="radio" name="correctAnswer${questionCount}" value="option${questionCount}_3">
                 <input type="text" id="option${questionCount}_3" name="option${questionCount}_3" placeholder="Option 3" required>
+                <input type="file" id="option${questionCount}_3_audio" name="option${questionCount}_3_audio" accept="audio/*">
             </div>
             <div class="option">
                 <input type="radio" name="correctAnswer${questionCount}" value="option${questionCount}_4">
                 <input type="text" id="option${questionCount}_4" name="option${questionCount}_4" placeholder="Option 4" required>
+                <input type="file" id="option${questionCount}_4_audio" name="option${questionCount}_4_audio" accept="audio/*">
             </div>
         </div><br><br>
 
@@ -67,13 +71,35 @@ function renumberQuestions() {
             text.setAttribute('id', id);
             text.setAttribute('name', name);
         });
+        block.querySelectorAll('input[type="file"]').forEach((fileInput) => {
+            const id = fileInput.getAttribute('id').replace(/\d+/, currentNumber);
+            const name = fileInput.getAttribute('name').replace(/\d+/, currentNumber);
+            fileInput.setAttribute('id', id);
+            fileInput.setAttribute('name', name);
+        });
         block.querySelector('.delete-question').setAttribute('onclick', `deleteQuestion('questionBlock${currentNumber}')`);
     });
 }
 
 function saveQuiz(event) {
     event.preventDefault();
-    // Submit the form
     const quizForm = document.getElementById('quizForm');
+    const formData = new FormData(quizForm);
+    
+    for (let [key, value] of formData.entries()) {
+        if (!value) {
+            alert("All fields must be filled.");
+            return;
+        }
+    }
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+    let radioCheck = Array.from(radios).some(radio => radio.checked);
+
+    if (!radioCheck) {
+        alert("Please select at least one correct answer for each question.");
+        return;
+    }
+    
     quizForm.submit();
 }
