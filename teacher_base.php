@@ -1,5 +1,5 @@
 <?php
-include('page_validation.php')
+include('page_validation.php');
 ?>  
   <!-- Header -->
       <header class="header">
@@ -32,7 +32,7 @@ include('page_validation.php')
 
                         <div class="nav-list">
                               <div class="nav-item">
-                                    <h3 class="nav-subtitle"><?php echo "$"?></h3> <!--return user name -->
+                                    <h3 class="nav-subtitle"><?php echo "$teacherName"?> </h3> 
       
                                     <a href="library_page.php" class="nav-link">
                                           <i class='bx bxs-book nav-icon'></i>

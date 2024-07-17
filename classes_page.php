@@ -15,7 +15,7 @@
 </head>
 <body>
     <?php
-    include('teacher_base.html')
+    include('teacher_base.php')
     ?>
 
 </body>
