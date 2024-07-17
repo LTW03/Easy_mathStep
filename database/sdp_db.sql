@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2024 at 03:24 PM
+-- Generation Time: Jul 17, 2024 at 02:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -152,7 +152,7 @@ CREATE TABLE `droppable` (
 
 CREATE TABLE `lesson` (
   `lesson_id` int(11) NOT NULL,
-  `subjects` char(100) DEFAULT NULL,
+  `lesson_name` char(100) DEFAULT NULL,
   `teacher_email` varchar(255) DEFAULT NULL,
   `class_id` int(11) DEFAULT NULL,
   `date_changes` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -167,6 +167,7 @@ CREATE TABLE `lesson` (
 CREATE TABLE `mcq_answer` (
   `mcq_answer_id` int(11) NOT NULL,
   `question_id` int(11) DEFAULT NULL,
+  `answer_text` text DEFAULT NULL,
   `mcq_audio` varchar(255) DEFAULT NULL,
   `is_correct` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
