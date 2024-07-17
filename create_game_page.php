@@ -1,3 +1,6 @@
+<?php
+include('page_validation.php')
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>

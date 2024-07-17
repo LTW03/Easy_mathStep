@@ -1,4 +1,7 @@
-     <!-- Header -->
+<?php
+include('page_validation.php')
+?>  
+  <!-- Header -->
       <header class="header">
             <div class="header-container">
                   <a class="header-title">My Classes</a>           
@@ -29,7 +32,7 @@
 
                         <div class="nav-list">
                               <div class="nav-item">
-                                    <h3 class="nav-subtitle">Lou Chinn Yew</h3> <!--return user name -->
+                                    <h3 class="nav-subtitle"><?php echo "$"?></h3> <!--return user name -->
       
                                     <a href="library_page.php" class="nav-link">
                                           <i class='bx bxs-book nav-icon'></i>
@@ -69,7 +72,7 @@
         
                     
         
-                    <a href="create_game_page.html">
+                    <a href="create_game_page.php">
                         <div class="selection_content_container">
                             <img src="./src/teacher_base/quiz.png" alt="Quiz Icon">
                             <div class="selection_content">

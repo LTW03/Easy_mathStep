@@ -1,13 +1,3 @@
-<!-- login validation -->
-<?php
-include('conn.php');
-$user_email = $_COOKIE['user_email'];
-
-if ($user_email == NULL ){
-    header("Location: ./Login_page.php");
-    exit();
-}
-?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +16,7 @@ if ($user_email == NULL ){
 </head>
 <body>
     <?php
-    include('teacher_base.html')
+    include('teacher_base.php')
     ?>
 
     <div class= "quizgame_wapper"> <!--item container-->

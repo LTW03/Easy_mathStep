@@ -1,11 +1,5 @@
 <?php
-include('conn.php');
-$user_email = $_COOKIE['user_email'];
-
-if ($user_email == NULL ){
-    header("Location: ./Login_page.php");
-    exit();
-}
+include('page_validation.php')
 ?> 
 <!DOCTYPE html>
 <html lang="en">
