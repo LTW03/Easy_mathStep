@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
           popup.style.display = "block";
 
           yesBtn.addEventListener("click", function() {
-                // Perform the logout action here
+                document.cookie = "user_email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 window.location.href = "landing_page.html";
                 document.body.removeChild(popup);
                 
