@@ -9,7 +9,7 @@ include('page_validation.php')
     <link rel="stylesheet" href="./Css_folder/create_game_page.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <title>Document</title>
+    <title>Create Game | E.M.S</title>
 </head>
 <body>
     <div class="header">
