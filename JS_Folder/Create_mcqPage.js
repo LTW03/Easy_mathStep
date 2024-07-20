@@ -40,7 +40,7 @@ function addQuestion() {
             </div>
         </div><br><br>
 
-        <button type="button" class="delete-question" onclick="deleteQuestion('questionBlock${questionCount}')">X</button>
+        <button type="button" class="delete-question" onclick="deleteQuestion('questionBlock${questionCount}')"> <i class="fas fa-trash-alt"></i> </button>
     `;
 
     questionsContainer.appendChild(newQuestionBlock);
