@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare("UPDATE teacher SET teacher_name = '$username', teacher_number = '$phone' WHERE teacher_email = '$teacher_email'");
 
     if ($stmt->execute()) {
-        echo "<script>alert('Record updated successfully'); window.location.href = 'test.php';</script>";
+        echo "<script>alert('Record updated successfully'); window.location.href = 'setting_page.php';</script>";
         exit();
         
     } else {

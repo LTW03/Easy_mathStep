@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $re_password = $_POST['re_password'];
 
     if ($new_password !== $re_password) {
-        echo "<script>alert('New passwords do not match.'); window.location.href = 'test.php';</script>";
+        echo "<script>alert('New passwords do not match.'); window.location.href = 'setting_page.php';</script>";
         exit();
     }
 
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
 
     if ($old_password !== $db_password) {
-        echo "<script>alert('Old password does not match.'); window.location.href = 'test.php';</script>";
+        echo "<script>alert('Old password does not match.'); window.location.href = 'setting_page.php';</script>";
         exit();
     }
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("ss", $new_password, $teacher_email);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Password updated successfully.'); window.location.href = 'test.php';</script>";
+        echo "<script>alert('Password updated successfully.'); window.location.href = 'setting_page.php';</script>";
     } else {
         echo "Error updating password: " . $stmt->error;
     }
