@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2024 at 02:44 PM
+-- Generation Time: Jul 22, 2024 at 06:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -59,8 +59,10 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`class_id`, `class_name`, `student_amount`, `teacher_email`, `color_id`) VALUES
-(1, 'chinchin', 25, 'john.doe@example.com', 1),
-(2, 'tingting', 30, 'jane.smith@example.com', 2);
+(2, 'tingting1345', 30, 'jane.smith@example.com', 2),
+(22, 'chinchin4', NULL, 'ikhwannabil77@gmail.com', 7),
+(23, 'tingting1313', NULL, 'ikhwannabil77@gmail.com', 1),
+(24, 'tingting134', NULL, 'ikhwannabil77@gmail.com', 4);
 
 -- --------------------------------------------------------
 
@@ -154,11 +156,23 @@ CREATE TABLE `lesson` (
   `lesson_id` int(11) NOT NULL,
   `lesson_name` char(100) DEFAULT NULL,
   `teacher_email` varchar(255) DEFAULT NULL,
-  `class_id` int(11) DEFAULT NULL,
+  `question_type` enum('MCQ','TF','DragDrop') DEFAULT NULL,
   `date_changes` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `assigned`
+--
+
+CREATE TABLE `assigned`(
+  `assign_key` int(11) NOT NULL,
+  `lesson_id` int(11) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ---------------------------------------------------------
 
 --
 -- Table structure for table `mcq_answer`
@@ -182,7 +196,6 @@ CREATE TABLE `question` (
   `question_id` int(11) NOT NULL,
   `question_text` text DEFAULT NULL,
   `question_audio` varchar(255) DEFAULT NULL,
-  `question_type` enum('MCQ','TF','DragDrop') DEFAULT NULL,
   `lesson_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -228,6 +241,7 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`teacher_email`, `password`, `teacher_name`, `teacher_number`) VALUES
+('ikhwannabil77@gmail.com', '1234567890', 'nabil', '0129582395'),
 ('jane.smith@example.com', 'password456', 'Jane Smith', '+9876543210'),
 ('john.doe@example.com', 'password123', 'John Doe', '+1234567890');
 
@@ -253,6 +267,7 @@ CREATE TABLE `words` (
   `word_id` int(11) NOT NULL,
   `word_text` text DEFAULT NULL,
   `is_encouragement` tinyint(4) DEFAULT NULL,
+  `img_path` varchar(255) DEFAULT NULL,
   `question_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -313,7 +328,14 @@ ALTER TABLE `droppable`
 --
 ALTER TABLE `lesson`
   ADD PRIMARY KEY (`lesson_id`),
-  ADD KEY `teacher_email` (`teacher_email`),
+  ADD KEY `teacher_email` (`teacher_email`);
+
+--
+-- Indexes for table `assigned`
+--
+ALTER TABLE `assigned`
+  ADD PRIMARY KEY (`assign_key`),
+  ADD KEY `lesson_id` (`lesson_id`),
   ADD KEY `class_id` (`class_id`);
 
 --
@@ -372,7 +394,7 @@ ALTER TABLE `character`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `color`
@@ -402,8 +424,13 @@ ALTER TABLE `droppable`
 -- AUTO_INCREMENT for table `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
+--
+-- AUTO_INCREMENT for table `assigned`
+--
+ALTER TABLE `assigned`
+  MODIFY `assign_key` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mcq_answer`
 --
@@ -458,9 +485,14 @@ ALTER TABLE `dragdropmapping`
 -- Constraints for table `lesson`
 --
 ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`),
-  ADD CONSTRAINT `lesson_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`);
 
+--
+-- Constraint for table `assigned`
+--
+ALTER TABLE `assigned`
+  ADD CONSTRAINT `assigned_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`),
+  ADD CONSTRAINT `assigned_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
 --
 -- Constraints for table `mcq_answer`
 --
