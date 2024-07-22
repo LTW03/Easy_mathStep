@@ -35,7 +35,7 @@ function uploadFile($file, $target_dir) {
 
 
 // Insert lesson (quiz) into the lesson table 
-$sql = "INSERT INTO lesson (lesson_name, teacher_email) VALUES (?, ?)";
+$sql = "INSERT INTO lesson (lesson_name, question_type, teacher_email) VALUES (?, 'MCQ' ,?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $quizName, $teacher_email);
 
@@ -46,8 +46,8 @@ if ($stmt->execute()) {
     exit();
 }
 
-$sql_question = "INSERT INTO question (question_text, question_audio, question_type, lesson_id) 
-                VALUES (?, ?, 'MCQ', ?)";
+$sql_question = "INSERT INTO question (question_text, question_audio, lesson_id) 
+                VALUES (?, ?, ?)";
 $stmt_question = $conn->prepare($sql_question);
 $stmt_question->bind_param("ssi", $questionText, $questionAudio, $lesson_id);
 
