@@ -1,7 +1,7 @@
 let questionCount = 0;
 
 function addQuestion() {
-    questionCount++; // Increment before using it for new question
+    questionCount++;
 
     const questionsContainer = document.getElementById('questionsContainer');
 
@@ -21,41 +21,79 @@ function addQuestion() {
             <div class="option">
                 <input type="radio" name="correctAnswer${questionCount}" value="option${questionCount}_1" required>
                 <input type="text" id="option${questionCount}_1" name="option${questionCount}_1" placeholder="Option 1" required>
-                <input type="file" id="option${questionCount}_1_audio" name="option${questionCount}_1_audio" accept="audio/*">
+                <input type="file" id="optionAudio${questionCount}_1" name="optionAudio${questionCount}_1" accept="audio/*">
             </div>
             <div class="option">
                 <input type="radio" name="correctAnswer${questionCount}" value="option${questionCount}_2">
                 <input type="text" id="option${questionCount}_2" name="option${questionCount}_2" placeholder="Option 2" required>
-                <input type="file" id="option${questionCount}_2_audio" name="option${questionCount}_2_audio" accept="audio/*">
+                <input type="file" id="optionAudio${questionCount}_2" name="optionAudio${questionCount}_2" accept="audio/*">
             </div>
             <div class="option">
                 <input type="radio" name="correctAnswer${questionCount}" value="option${questionCount}_3">
                 <input type="text" id="option${questionCount}_3" name="option${questionCount}_3" placeholder="Option 3" required>
-                <input type="file" id="option${questionCount}_3_audio" name="option${questionCount}_3_audio" accept="audio/*">
+                <input type="file" id="optionAudio${questionCount}_3" name="optionAudio${questionCount}_3" accept="audio/*">
             </div>
             <div class="option">
                 <input type="radio" name="correctAnswer${questionCount}" value="option${questionCount}_4">
                 <input type="text" id="option${questionCount}_4" name="option${questionCount}_4" placeholder="Option 4" required>
-                <input type="file" id="option${questionCount}_4_audio" name="option${questionCount}_4_audio" accept="audio/*">
+                <input type="file" id="optionAudio${questionCount}_4" name="optionAudio${questionCount}_4" accept="audio/*">
             </div>
         </div><br><br>
 
-        <button type="button" class="delete-question" onclick="deleteQuestion('questionBlock${questionCount}')"> <i class="fas fa-trash-alt"></i> </button>
+        <label for="questionImage${questionCount}">Upload Encouragement Image:</label>
+        <input type="file" id="questionImage${questionCount}" name="questionImage${questionCount}" accept="image/*" onchange="previewImage(event, 'imagePreview${questionCount}', 'loader${questionCount}')"><br><br>
+        <img id="imagePreview${questionCount}" src="" alt="Encouragement Image Preview" style="display: none;"><br><br>
+        <div id="loader${questionCount}" class="loader" style="display: none;"></div><br><br>
+
+        <label for="encouragement${questionCount}">Encouragement Text:</label>
+        <input type="text" id="encouragement${questionCount}" name="encouragement${questionCount}" placeholder="Enter encouragement text"><br><br>
+
+        <label for="isEncouragement${questionCount}">
+            <input type="checkbox" id="isEncouragement${questionCount}" name="isEncouragement${questionCount}">
+            Mark as encouragement
+        </label><br><br>
+
+        <button type="button" class="delete-question" onclick="deleteQuestion('questionBlock${questionCount}')">X</button>
     `;
 
     questionsContainer.appendChild(newQuestionBlock);
 }
 
+function previewImage(event, previewId, loaderId) {
+    const file = event.target.files[0];
+    const preview = document.getElementById(previewId);
+    const loader = document.getElementById(loaderId);
+    const reader = new FileReader();
+
+    // Show loader
+    loader.style.display = 'block';
+
+    reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+
+        // Hide loader
+        loader.style.display = 'none';
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+        preview.style.display = 'none';
+        loader.style.display = 'none';
+    }
+}
+
 function deleteQuestion(questionBlockId) {
     const questionBlock = document.getElementById(questionBlockId);
     questionBlock.remove();
-    // Renumber questions after deletion
     renumberQuestions();
 }
 
 function renumberQuestions() {
     const questionBlocks = document.querySelectorAll('.question-block');
-    questionCount = questionBlocks.length; // Update questionCount to match the number of questions
+    questionCount = questionBlocks.length;
 
     questionBlocks.forEach((block, index) => {
         const currentNumber = index + 1;
@@ -71,11 +109,11 @@ function renumberQuestions() {
             text.setAttribute('id', id);
             text.setAttribute('name', name);
         });
-        block.querySelectorAll('input[type="file"]').forEach((fileInput) => {
-            const id = fileInput.getAttribute('id').replace(/\d+/, currentNumber);
-            const name = fileInput.getAttribute('name').replace(/\d+/, currentNumber);
-            fileInput.setAttribute('id', id);
-            fileInput.setAttribute('name', name);
+        block.querySelectorAll('input[type="file"]').forEach((file) => {
+            const id = file.getAttribute('id').replace(/\d+/, currentNumber);
+            const name = file.getAttribute('name').replace(/\d+/, currentNumber);
+            file.setAttribute('id', id);
+            file.setAttribute('name', name);
         });
         block.querySelector('.delete-question').setAttribute('onclick', `deleteQuestion('questionBlock${currentNumber}')`);
     });
@@ -85,12 +123,19 @@ function saveQuiz(event) {
     event.preventDefault();
     const quizForm = document.getElementById('quizForm');
     const formData = new FormData(quizForm);
-    
+
+    let valid = true;
+
     for (let [key, value] of formData.entries()) {
-        if (!value) {
-            alert("All fields must be filled.");
-            return;
+        if (key.includes('question') && !key.includes('Text') && !key.includes('Image') && !key.includes('Audio') && !value) {
+            valid = false;
+            break;
         }
+    }
+
+    if (!valid) {
+        alert("All fields must be filled or marked as encouragement.");
+        return;
     }
 
     const radios = document.querySelectorAll('input[type="radio"]');
@@ -100,6 +145,6 @@ function saveQuiz(event) {
         alert("Please select at least one correct answer for each question.");
         return;
     }
-    
+
     quizForm.submit();
 }

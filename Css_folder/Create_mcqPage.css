@@ -192,3 +192,28 @@ body {
     justify-content: center;
     cursor: pointer;
 }
+
+.question-block img {
+    display: block;
+    margin: 10px auto; 
+    max-width: 200px; 
+    max-height: 200px; 
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+}
+
+.loader {
+    border: 4px solid var(--input-border); 
+    border-top: 4px solid var(--btn-backgrond); 
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    display: none; 
+    margin: 10px auto; 
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
