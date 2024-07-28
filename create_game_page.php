@@ -1,5 +1,5 @@
 <?php
-include('page_validation.php')
+include('Teacher_loginValidate.php')
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@ include('page_validation.php')
             <h1>Create a new exercise</h1>
             <input type="text" placeholder="Enter type of exercise">
             <div class="exercise_buttons">
-                <a href="#">
+                <a href="Create_TF_Page.php">
                     <div class="btn">
                         <i class="fas fa-check-square"></i>
                         True/False
