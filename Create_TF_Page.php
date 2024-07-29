@@ -1,3 +1,6 @@
+<?php
+include('Teacher_loginValidate.php')
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +33,7 @@
     <div class="centralize_form">
         <div class="form_container">
             <h1>Create a Quiz</h1>
-            <form id="quizForm" action="Create_mcqSavingProcess.php" method="POST" enctype="multipart/form-data">
+            <form id="quizForm" action="Create_TF_SavingProcess.php" method="POST" enctype="multipart/form-data">
                 <label for="quizName">Quiz/Lesson Name:</label>
                 <input type="text" id="quizName" name="quizName" required><br><br>
 
