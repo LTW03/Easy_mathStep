@@ -35,7 +35,7 @@
                 </div>
                 <div class="remember-me-forgot">
                     <label> <input type="checkbox">Remember Me</label>
-                    <a href="Forget_pass-page.html">
+                    <a href="forget_pass-page.php">
                         Forgot password?
                     </a>
                 </div>

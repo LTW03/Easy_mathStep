@@ -10,8 +10,3 @@ const togglePassword = document.getElementById('togglePassword');
             this.classList.toggle('bx-show');
             this.classList.toggle('bx-hide');})
 
-
-function loginPageRedirect() {
-    window.location.hred = 'loginpage.php';
-
-}
