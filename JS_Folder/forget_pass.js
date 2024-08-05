@@ -92,6 +92,37 @@ function verifyOtp() {
     }
 }
 
+function showUpdatePasswordForm() {
+    document.getElementById('otp-form').style.display = 'none';
+    document.getElementById('update-password-form').style.display = 'block';
+}
+
+function updatePassword() {
+    const email = document.getElementById('email-otp').value;
+    const newPassword = document.getElementById('new-password').value;
+
+    fetch('update_password.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            new_password: newPassword
+        })
+    }).then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Password updated successfully!');
+            window.location.href = "Login_page.php";
+        } else {
+            alert('Error: ' + data.error);
+        }
+    }).catch(error => {
+        console.error('Error updating password:', error);
+        alert('Error updating password. Please try again later.');
+    });
+}
 
 function resendOTP() {
     document.getElementById('forgot-password-form').style.display = 'block';
