@@ -31,7 +31,7 @@
       /* --z-fixed: 100; */
 }
 /* popup page */
-.Class_popup {
+.create_class-popup {
       position: fixed;
       bottom: -100%;
       left: 50%;
@@ -47,11 +47,11 @@
 
 /* popup animation */
 
-.Class_popup.open {
+.create_class-popup.open {
       bottom: 45%;
     }
     
-    .Class_popup.hide {
+    .create_class-popup.hide {
       bottom: -100%;
     }
 
@@ -290,43 +290,43 @@
 
 /* show more color */
 .more-color-menu {
-      padding: 1rem 0 1rem 1rem;
-      background-color: white;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      border-radius: 5px;
-      position: absolute;
-      right: 0px;
-      top: 30px;
+    padding: 1rem 0 1rem 1rem;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    position: absolute;
+    right: 0px;
+    top: 30px;
 
-      height: 0px;
-      width: 180px;
-      overflow: hidden; /* Ensures the content is hidden when height is 0 */
-      transition: height 0.5s ease-in-out;
-      display: none; /* Initially hide the box */
+    height: 0px;
+    width: 180px;
+    overflow: hidden; /* Ensures the content is hidden when height is 0 */
+    transition: height 0.5s ease-in-out;
+    display: none; /* Initially hide the box */
 }
-.more-color-menu.visible{
-      height: 190px;
-      width: 180px;
+
+.more-color-menu.visible {
+    height: 190px;
+    width: 180px;
 }
 
 .color-option {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-
-      border: 2px solid transparent;
-      display: inline-block;
-      margin: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    display: inline-block;
+    margin: 2px;
 }
 
-.input-classname-error{
-      position: absolute;
-      top: 5.6rem;
-      left: 1.7rem;
-      color: red;
-      display: none;
-      width: 27.5rem;
+.input-classname-error {
+    position: absolute;
+    top: 5.6rem;
+    left: 1.7rem;
+    color: red;
+    display: none;
+    width: 27.5rem;
 }
 
 

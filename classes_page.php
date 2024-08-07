@@ -92,6 +92,43 @@
         
     </div>
 
+    <div class="create_class-popup hide" id="create-class-popup">
+            <a class="popup-title">Create a new class</a>
+            <i class='bx bx-x close-popup_page'></i>
+            <form id="createClassForm" action="PHP-backend/create_class.php" method="post">
+                  <div class="input-list">
+                        <div class="cls-name-input">
+                              <li><input type="text" name="class_name" placeholder="Enter class name" class="class-name-input" id="classname" required></li>
+                              <a class="input-classname-error" id="clsname-error">Please enter a class name</a>
+                        </div>
+                        <input type="hidden" name="selected_color" id="selectedColorInput">
+                        <button type="submit" class="crt-class-btn">Create Class</button>
+                        <div class="choose-color">
+                              <li><div id="selected-color" class="color-preview"></div></li>
+                              <li class="more-color"><i class='bx bxs-down-arrow more-color'></i></li>
+                              <div class="more-color-menu">
+                                    <div class="color-option" style="background-color: black;" data-color="black" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: orange;" data-color="orange" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: red;" data-color="red" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: lime;" data-color="lime" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: blue;" data-color="blue" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: yellow;" data-color="yellow" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: cyan;" data-color="cyan" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: magenta;" data-color="magenta" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: gold;" data-color="gold" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: MediumSlateBlue;" data-color="MediumSlateBlue" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: Aquamarine;" data-color="Aquamarine" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: olive;" data-color="olive" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: green;" data-color="green" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: purple;" data-color="purple" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: teal;" data-color="teal" onclick="selectColor(this)"></div>
+                                    <div class="color-option" style="background-color: navy;" data-color="navy" onclick="selectColor(this)"></div>
+                              </div>
+                        </div>
+                  </div>
+            </form>
+      </div>
+
     <script src="./JS_Folder/create_class/create-class-popup-cookie.js"></script>
     <script src="./JS_Folder/create_class/more-color.js"></script>
     <script src="./JS_Folder/create_class/delete-edit-cls-popup.js"></script>
