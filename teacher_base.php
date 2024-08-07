@@ -60,7 +60,7 @@ include('Teacher_loginValidate.php');
       </div>
 
       <!-- create selection pop up  -->
-      <div id="create-popup" class="create_popup">
+      <div id="create_popup" class="create_popup">
             <div class="selector_container">
                 <div class="selector_content">
                     <div>
@@ -83,7 +83,7 @@ include('Teacher_loginValidate.php');
                             </div>
                         </div>
                     </a>
-                    <a href="#">
+                    <a href="classes_page.php?showPopup=true" id = "create-class-link">
                         <div class="selection_content_container">
                             <img src="src/teacher_base/class.png" alt="Class Icon">
                             <div class="selection_content">
@@ -99,3 +99,5 @@ include('Teacher_loginValidate.php');
                 </div>
             </div>
       </div>
+
+

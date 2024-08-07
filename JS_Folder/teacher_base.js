@@ -28,7 +28,7 @@ linkColor.forEach(l => l.addEventListener('click',colorLink))
 
 // show pop up selection
 var btn = document.getElementById("create_btn");
-var popup = document.getElementById("create-popup");
+var popup = document.getElementById("create_popup");
 btn.onclick = function() {
     popup.style.display = "block";
 }
