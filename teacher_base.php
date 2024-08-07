@@ -60,7 +60,7 @@ include('Teacher_loginValidate.php');
       </div>
 
       <!-- create selection pop up  -->
-      <div id="create-popup" class="popup">
+      <div id="create-popup" class="create_popup">
             <div class="selector_container">
                 <div class="selector_content">
                     <div>
@@ -69,8 +69,6 @@ include('Teacher_loginValidate.php');
                               &times;
                         </div>
                     </div>
-        
-                    
         
                     <a href="create_game_page.php">
                         <div class="selection_content_container">

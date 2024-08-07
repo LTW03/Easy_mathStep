@@ -264,7 +264,7 @@ img{
 
 
 
-.popup {
+.create_popup {
       display: none;
       position: fixed;
       z-index: var(--z-fixed);
