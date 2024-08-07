@@ -1,0 +1,499 @@
+/* this code is import the font from google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Variable CSS */
+:root{
+      --header-height: 3.5rem;
+      --nav-width: 219px;
+
+      /* Color */
+      --first-color: #267ce2;
+      --first-color-light: #d1efff;
+      --title-color: #19181b;
+      --text-color: #58555e;
+      --text-color-light: #a5a1aa;
+      --body-color: #f9f6fd;
+      --container-color: #ffffff;
+      /* --container-color-light: #f4f0fa; */
+      
+
+      /* font and typhography */
+      --body-font: "Poppins", sans-serif;
+      --normal-font-size: .938rem;
+      --small-font-size: .75rem;
+      --smaller-font-size: .75rem;
+
+      /* font weight */
+      --font-medium-: 500;
+      --font-semi-bold-: 600;
+
+      /* z index */
+      /* --z-fixed: 100; */
+}
+/* popup page */
+.Class_popup {
+      position: fixed;
+      bottom: -100%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      height: 150px;
+      width: 500px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ccc;
+      transition: bottom 0.5s ease-in-out;
+      z-index: 100;
+}
+
+/* popup animation */
+
+.Class_popup.open {
+      bottom: 45%;
+    }
+    
+    .Class_popup.hide {
+      bottom: -100%;
+    }
+
+/* popup content */
+.close-popup_page{
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2rem;
+      margin-right: .5rem;
+      margin-top: .5rem;
+      cursor: pointer;
+}
+.close-popup_page:hover{
+      background-color: rgba(133, 131, 131, 0.1);
+      border-radius: 100px;
+}
+
+.popup-title{
+      position: relative;
+      top: .5rem;
+      left: 1rem;
+      font-weight: var(--font-semi-bold-);
+      font-size: 1.2rem;      
+}
+.input-list{
+      list-style-type: none;
+      margin: 5%;
+      padding: 0px;
+}
+
+.input-list li{
+      float: left;
+}
+.class-name-input{
+      display: flex;
+      width: 350px;
+      padding: .40rem .75rem;
+      border: 1px solid black;
+}
+
+.choose-color{
+      position: fixed;
+      border: 1px solid black;
+      padding: 3px;
+      right: 2rem;
+      width: 93px;
+      height: 30px;
+      cursor: pointer;
+      border-left: none;
+      overflow: show;
+}
+.more-color{
+      top: 3px;  
+}
+.choose-color:hover{
+      background-color: rgba(133, 131, 131, 0.1);
+}
+.choose-color li{
+      padding: 0 5px;
+      position: relative;
+      left: 1rem;
+}
+.color-preview {
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      background-color: aqua;
+}
+
+
+
+.crt-class-btn{
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      width: 100px;
+      color: white;
+      background-color: #267CE2;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+}
+.crt-class-btn:hover {
+      background-color: #0056b3; /* Change background color on hover */
+}
+
+/* edit class popup */
+.edit-cls-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      height: 150px;
+      width: 500px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ccc;
+      transition: bottom 0.5s ease-in-out;
+      z-index: 100;
+}
+
+.edit-cls-popup.open {
+      bottom: 45%;
+    }
+    
+    .edit-cls-popup.hide {
+      bottom: -100%;
+    }
+
+.edit-cls-close{
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2rem;
+      margin-right: .5rem;
+      margin-top: .5rem;
+      cursor: pointer;
+}
+.edit-cls-close:hover{
+      background-color: rgba(133, 131, 131, 0.1);
+      border-radius: 100px;
+}
+.edit-class-name{
+      display: flex;
+      width: 440px;
+      padding: .40rem .75rem;
+      border: 1px solid black;
+}
+
+.edit-cls-btn{
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+}
+.cancel-btn{
+      color: black;
+      background-color: #f9f6fd;
+      padding: 5px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+}
+.save-btn{
+      margin-left: 1rem;
+      color: white;
+      background-color: #267CE2;
+      padding: 5px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+}
+/* edit cls popup done */
+
+/* delete cls popup */
+.delete-cls-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      height: 150px;
+      width: 500px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ccc;
+      transition: bottom 0.5s ease-in-out;
+      z-index: 100;
+}
+
+.delete-cls-popup.open {
+      bottom: 45%;
+    }
+    
+    .popup.hide {
+      bottom: -100%;
+    }
+
+.popup-subtitle{
+      position: absolute;
+      top: 2.5rem;
+      left: 1rem;
+      font-weight: 500;
+}
+
+.edit-cancel-btn{
+      height: 2rem;
+      width: 5rem;
+      color: black;
+      background-color: #ddd;
+      padding: 5px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+}
+.edit-cancel-btn:hover{
+      background-color: rgb(197, 197, 197);
+}
+
+.edit-delete-btn{
+      height: 2rem;
+      width: 5rem;
+      margin-left: 1rem;
+      color: white;
+      background-color: rgb(255, 114, 109);
+      padding: 5px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+}
+.edit-delete-btn:hover{
+      background-color: rgb(255, 73, 66);
+}
+
+.delete-cls-btn-wrapper{
+      position: absolute;
+      bottom: 1.5rem;
+      right: 9rem;
+}
+
+.delete-cls-close{
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2rem;
+      margin-right: .5rem;
+      margin-top: .5rem;
+      cursor: pointer;
+}
+.delete-cls-close:hover{
+      background-color: rgba(133, 131, 131, 0.1);
+      border-radius: 100px;
+}
+/* delete class  */
+
+/* show more color */
+.more-color-menu {
+      padding: 1rem 0 1rem 1rem;
+      background-color: white;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      position: absolute;
+      right: 0px;
+      top: 30px;
+
+      height: 0px;
+      width: 180px;
+      overflow: hidden; /* Ensures the content is hidden when height is 0 */
+      transition: height 0.5s ease-in-out;
+      display: none; /* Initially hide the box */
+}
+.more-color-menu.visible{
+      height: 190px;
+      width: 180px;
+}
+
+.color-option {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+
+      border: 2px solid transparent;
+      display: inline-block;
+      margin: 2px;
+}
+
+.input-classname-error{
+      position: absolute;
+      top: 5.6rem;
+      left: 1.7rem;
+      color: red;
+      display: none;
+      width: 27.5rem;
+}
+
+
+/* delete edit cls popup */
+
+.delete-edit-cls-popup {
+      padding: .5rem;
+      background-color: white;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      position: absolute;
+      right: 25px;
+      top: 25px;
+
+      height: 0px;
+      width: 200px;
+      overflow: hidden; /* Ensures the content is hidden when height is 0 */
+      transition: height 0.05s ease-in-out;
+      display: none;
+}
+
+.delete-edit-cls-popup.show{
+      height: 85px;
+      width: 200px;
+}
+.delete-edit-cls{
+      font-size: 1rem;
+}
+.delete-edit-cls:hover{
+      cursor: pointer;
+      background-color: rgba(133, 131, 131, 0.1);
+}
+
+.icon-title{
+      padding: .5rem;
+      font-family: var(--body-font);
+}
+.add-lesson-popup {
+    position: fixed;
+    bottom: -100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    height: 350px;
+    width: 500px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    transition: bottom 0.5s ease-in-out;
+    z-index: 100;
+}
+
+.add-lesson-popup.open {
+    bottom: 25%;
+  }
+  
+  .add-lesson-popup.hide {
+    bottom: -100%;
+  }
+  @media screen and (max-width:1024px){
+    .header-search{
+          width: 40%;
+    }
+    .class-card{
+          display: flex;
+          position: relative;
+          /* border: solid orange; */
+          border-width: 0 0 0 1em;
+          box-shadow: 1px 0 0 rgb(22, 8, 43,.1);
+          background: var(--container-color);
+          border-radius: 10px;
+          padding: 1rem;   
+          margin: 1rem 1.5rem;
+          z-index: 99;
+
+          /* adjust the position */
+          width: 90%;
+          display: inline-block;
+    }
+}
+
+
+/* for PC  and tab horizontal device */
+@media screen and (min-width:1025px){
+    body{
+          padding: 1rem 3rem 0 6rem;
+    }
+    .header{
+          padding: 0 3rem 0 6rem;
+    }
+    .header-container{
+          height: calc(var(--header-height) + .5rem);
+          justify-content: space-between;
+          gap: 10px;
+    }
+    .header-title{
+          position: relative;
+          left: 18%;
+    }
+    .header-search{
+          width: 300px;
+          padding: .55rem .75rem;
+    }
+    .headertoggle{
+          display: none;
+    }
+
+    .nav{
+          left: 0%;
+          padding: 1.2rem 1.5rem 3rem;
+    }
+    .nav-item{
+          row-gap: 1.7rem;
+    }
+
+    .nav-icon{
+          font-size: 1.3rem;
+    }
+
+    /* class card for horizontal version */
+    .card-content{
+          grid-template-columns: repeat(2, 1fr);
+    }
+    .class-card{
+          display: flex;
+          position: relative;
+          /* border: solid orange; */
+          border-width: 0 0 0 1rem;
+          box-shadow: 1px 0 0 rgb(22, 8, 43,.1);
+          background: var(--container-color);
+          border-radius: 10px;
+          padding: 1rem;   
+          margin: .8rem 1.5rem;
+          z-index: 99;
+
+          /* adjust the position */
+          width: 40%;
+          display: inline-block;
+    }
+
+    
+} 
+
+.class-card:hover{
+    background-color: rgba(179, 176, 176, 0.1);
+    cursor: pointer;
+}
+.class-more{
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    font-size: 1.2rem;
+}
+.class-more:hover{
+    background-color: rgba(103, 103, 103, 0.1);
+    cursor: pointer;
+    border-radius: 100px;
+}
+
+
+
+@media screen and (max-width:1024px){
+      .popup.open {
+            bottom: 60%;
+          }
+          
+          .popup.hide {
+            bottom: -100%;
+          }
+}
+
