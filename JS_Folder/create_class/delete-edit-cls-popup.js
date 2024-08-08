@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
 
             // AJAX request to update class name
-            fetch('PHP-backend/edit_class.php', {
+            fetch('Classes-backend/edit_class.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

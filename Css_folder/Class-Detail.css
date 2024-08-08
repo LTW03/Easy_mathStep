@@ -1,0 +1,525 @@
+/* this code is import the font from google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Variable CSS */
+:root{
+      --header-height: 3.5rem;
+      --nav-width: 219px;
+
+      /* Color */
+      --first-color: #267ce2;
+      --first-color-light: #d1efff;
+      --title-color: #19181b;
+      --text-color: #58555e;
+      --text-color-light: #a5a1aa;
+      --body-color: #f9f6fd;
+      --container-color: #ffffff;
+      --container-color-light: #f4f0fa;
+      
+
+      /* font and typhography */
+      --body-font: "Poppins", sans-serif;
+      --normal-font-size: .938rem;
+      --small-font-size: .75rem;
+      --smaller-font-size: .75rem;
+
+      /* font weight */
+      --font-medium-: 500;
+      --font-semi-bold-: 600;
+
+      /* z index */
+      /* --z-fixed: 100; */
+}
+
+@media screen and (min-width: 1024px){
+      :root{
+            --normal-font-size--: 1rem;
+            --small-font-size--: .875em;
+            --smaller-font-size--: .813rem;
+      }
+}
+
+/* ===Base=== */
+*,::before,::after{
+      box-sizing:  border-box;
+}
+
+body{
+      margin: var(--header-height) 0 0 0;
+      padding: 1rem 1rem 0;
+      font-family: var(--body-font);
+      font-size: var(--normal-font-size);
+      background-color: var(--body-color);
+      color: var(--text-color);
+}
+
+h3{
+      margin: 0;
+}
+h2{
+      margin: 0;
+}
+
+a{
+      text-decoration: none;
+}
+
+img{
+      max-width: 100%;
+      height:auto;
+}
+
+
+/* CSS start */
+
+.back-to-all-class{
+      position: absolute;
+      font-size: 1rem;
+}
+.back-to-all-class:hover{
+      cursor: pointer;
+}
+
+.class-title-card{
+      position: relative;
+      /* border: solid black; */
+      border-width: 0 0 0 2rem;
+      box-shadow: 1px 1px 0 rgb(22, 8, 43,.2);
+      background: var(--container-color);
+      border-radius: 10px;
+      
+}
+.add-student{
+      font-size: 2rem;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+}
+.add-student:hover{
+      cursor: pointer;
+      background-color: rgba(133, 131, 131, 0.1);
+      border-radius: 100px;
+}
+
+.slc-all-student{
+      padding: 0 .5rem 0 0;
+}
+.student-table{
+      background: var(--container-color);
+}
+.student-list th, td{
+      text-align: left;
+      background-color: var(--container-color);
+      color: var(--text-color);
+      padding: 8px 25px;
+    }
+
+/* create new student popup */
+.new-student-popup {
+      position: fixed;
+      overflow: hidden;
+      overflow-y: auto;
+      bottom: -100%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      height: 150px;
+      width: 500px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ccc;
+      transition: bottom 0.5s ease-in-out;
+}
+
+.new-student-popup.open {
+      bottom: 20%;
+    }
+    
+    .new-student-popup.hide {
+      bottom: -100%;
+    }
+
+.student-close{
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2rem;
+      margin-right: .5rem;
+      margin-top: .5rem;
+      cursor: pointer;
+}
+.student-close:hover{
+      background-color: rgba(133, 131, 131, 0.1);
+      border-radius: 100px;
+}
+
+.new-student-popup-title{
+      font-size: 1.2rem;
+      position: relative;
+      top: .5rem;
+      left: 1rem;
+}
+
+.new-student-info{
+      margin: 1rem 2rem;
+      gap: 2rem;
+}
+.info-input{
+      width: 98%;
+      height: 30px;
+      margin-top: 5px;
+}
+.student-info{
+      margin-bottom: .5em;
+}
+
+.next-btn{
+      position: relative;
+      display: flex;
+      color: white;
+      background-color: #267CE2;
+      padding: 5px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+}
+.next-btn:hover {
+      background-color: #0056b3; /* Change background color on hover */
+}
+
+
+/* profile */
+
+.profile-list{
+      margin: 1rem;
+      align-items: center;
+}
+.profile{
+      display: inline-block;
+      margin: .5rem;
+      border: #19181b 3px solid;
+      padding: .2rem;
+      width: 60px; 
+}
+
+.profile:hover{
+      background-color: rgba(93, 93, 93, 0.1);
+      cursor: pointer;
+}
+
+.profile.selected{
+      background-color: rgba(93, 93, 93, 0.2);
+}
+.new-std-icon{
+      padding: 0 1rem;
+      font-size: 1.3rem;
+}
+.new-std-icon:hover{
+      cursor: pointer;
+      color: rgba(31, 31, 31, 0.5);
+}
+
+/* delete student */
+.delete-std-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 150px;
+      width: 500px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ccc;
+      z-index: 100;
+  }
+
+.delete-std-popup.open {
+      bottom: 45%;
+    }
+    
+    .popup.hide {
+      bottom: -100%;
+    }
+
+.delete-std-close{
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2rem;
+      margin-right: .5rem;
+      margin-top: .5rem;
+      cursor: pointer;
+}
+.delete-std-close:hover{
+      background-color: rgba(133, 131, 131, 0.1);
+      border-radius: 100px;
+}
+/* delete student done */
+
+
+/* edit student */
+.edit-student-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 500px;
+      width: 830px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ccc;
+      z-index: 110;
+      overflow-y: auto;
+  }
+.edit-student-popup.open {
+      bottom: 15%;
+    }
+    
+    .edit-student-popup.hide {
+      bottom: -100%;
+    }
+
+.edit-student-close{
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 2rem;
+      margin-right: .5rem;
+      margin-top: .5rem;
+      cursor: pointer;
+}
+.edit-student-close:hover{
+      background-color: rgba(133, 131, 131, 0.1);
+      border-radius: 100px;
+}
+
+/* edit sutdent done */
+
+
+/* for mobile and vertical tab */
+@media screen and (max-width:1024px){
+      .back-to-all-class{
+            top: 4rem;
+      }  
+      .class-title-card{
+            padding: 1rem;   
+            margin: .8rem 1rem;
+            height: 7rem;
+            width: 95%;
+      }
+      .add-student{
+            font-size: 2rem;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+      }
+      .student-amount{
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+      }
+
+      .class-activity{
+            position: relative;
+            border-width: 0 0 0 2rem;
+            box-shadow: 1px 1px 0 rgb(22, 8, 43,.2);
+            background: var(--container-color);
+            border-radius: 10px;
+            padding: 1rem;   
+            margin: 1rem 1.5rem 1rem 1rem;
+            height: 7rem;
+            width: 95%;
+      }
+      .class-activity h3{
+            position: absolute;
+            top: 1rem;
+            font-size: 1rem;
+            width: 10%;
+      }
+      .icon{
+            font-size: 1.8rem;
+      }
+      .class-data{
+            position: relative;
+            top: 1.5rem;
+            left: 5rem;
+            display: inline;
+      }
+      .data-type {
+            position: relative;
+            bottom: 1rem;
+
+      }
+      .data-amount{
+            position: relative;
+            right: 6.5rem;
+      }
+      
+      .search-student{
+            position: relative;
+            margin-top: 2rem;
+            left: 1rem;
+            width: 300px;
+            padding: .40rem .75rem;
+            background-color: var(--container-color);
+            border-radius: 1rem;
+            box-shadow: 1px 1px 0 rgb(22, 8, 43,.2);
+      }
+      
+      .search-student-input{
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: var(--container-color);
+      }
+      .search-student-icon{
+            position: absolute;
+            right: 1rem;
+            top: .7rem;
+      }
+      
+      .search-student-input::placeholder{
+            position: absolute;
+            bottom: 1px;
+            font-family: var(--body-font);
+            color: var(--text-color);
+      }
+      
+      /* student table */
+      .new-student-popup {
+            height: 380px;
+            width: 500px;
+      }
+      .student-table{
+            position: relative;
+            background: var(--container-color);
+            margin-top: 1rem;
+            left: 1rem;
+            width: 95%;
+      }
+
+      .new-student-popup.open {
+            bottom: 40%;
+          }
+          
+          .new-student-popup.hide {
+            bottom: -100%;
+          }
+          .next-btn{
+            left: 23rem;
+            bottom: -1rem;
+      }
+
+}
+      
+/* for PC  and tab horizontal device */
+@media screen and (min-width:1025px){
+      .back-to-all-class{
+            left: 15.5rem;
+            top: 4.5rem;
+      }     
+      .class-title-card{
+            padding: 1rem;   
+            margin: 1rem 1.5rem 1rem 16rem;
+            height: 7rem;
+            width: 79%;
+      }
+      .add-student{
+            font-size: 2rem;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+      }
+      .student-amount{
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+      }
+      
+      .class-activity{
+            position: relative;
+            border-width: 0 0 0 2rem;
+            box-shadow: 1px 1px 0 rgb(22, 8, 43,.2);
+            background: var(--container-color);
+            border-radius: 10px;
+            padding: 1rem;   
+            margin: 1rem 1.5rem 1rem 16rem;
+            height: 5rem;
+            width: 79%;
+      }
+      .class-activity h3{
+            position: absolute;
+            top: 2rem;
+      }
+      .icon{
+            font-size: 2rem;
+      }
+      .class-data{
+            position: relative;
+            top: .5rem;
+            left: 20rem;
+            display: inline;
+      }
+      .data-type {
+            position: relative;
+            bottom: 1rem;
+      }
+      .data-amount{
+            position: relative;
+            right: 6.5rem;
+      }
+      /* search bar */
+      .search-student{
+            position: relative;
+            left: 16rem;
+            width: 300px;
+            padding: .40rem .75rem;
+            background-color: var(--container-color);
+            border-radius: 1rem;
+            margin-top: 2rem;
+      }
+      
+      .search-student-input{
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: var(--container-color);
+      }
+      .search-student-icon{
+            position: absolute;
+            right: 1rem;
+            top: .7rem;
+      }
+       
+      .search-student-input::placeholder{
+            position: absolute;
+            bottom: 1px;
+            font-family: var(--body-font);
+            color: var(--text-color);
+      }
+      /* student table */
+      .student-table {
+            position: relative;
+            background: var(--container-color);
+            margin-top: 1rem;
+            left: 16rem;
+            width: 79%;
+            min-height: 400px;
+            box-shadow: 1px 1px 0 rgb(22, 8, 43,.2);
+      }
+
+      .student-list th, td {
+            width: 20%;
+        }
+
+      .new-student-popup {
+            height: 60%;
+            width: 55%;
+      }
+
+      .next-btn{
+            left: 89%;
+            bottom: -1rem;
+      }
+} 
