@@ -22,7 +22,7 @@
     $class = $conn->query($sql);
     ?>
           <!-- class card content -->
-          <div class="cardcontent">
+    <div class="cardcontent">
         <?php
         if ($class->num_rows > 0) {
             // Output data for each class
@@ -49,7 +49,7 @@
     <div class="edit-cls-popup" id="edit-cls-popup">
         <a class="popup-title">Edit class name</a>
         <i class='bx bx-x edit-cls-close' ></i>
-        <form id="editClassForm" method="post" action="PHP-backend/edit_class.php">
+        <form id="editClassForm" method="post" action="./Classes-backend/edit_class.php">
             <input type="hidden" id="edit_class_id" name="class_id" value="">
             <div class="input-list">
                 <div class="cls-name-input">
@@ -68,7 +68,7 @@
         <a class="popup-title">Delete this class?</a>
         <a class="popup-subtitle">Deleted class cannot be recovered</a>
         <i class='bx bx-x delete-cls-close'></i>
-        <form id="deleteClassForm" method="post" action="PHP-backend/delete_class.php">
+        <form id="deleteClassForm" method="post" action="./Classes-backend/delete_class.php">
             <input type="hidden" id="delete_class_id" name="class_id" value="">
             <div class="delete-cls-btn-wrapper">
                 <input class="edit-cancel-btn" type="button" id="delete-cancel-btn" value="Cancel">
@@ -92,10 +92,10 @@
         
     </div>
 
-    <div class="create_class-popup hide" id="create-class-popup">
+    <div class="create_class-popup hide" id="create-class-popup">     
             <a class="popup-title">Create a new class</a>
             <i class='bx bx-x close-popup_page'></i>
-            <form id="createClassForm" action="PHP-backend/create_class.php" method="post">
+            <form id="createClassForm" action="./Classes-backend/create_class.php" method="post">
                   <div class="input-list">
                         <div class="cls-name-input">
                               <li><input type="text" name="class_name" placeholder="Enter class name" class="class-name-input" id="classname" required></li>
@@ -127,7 +127,7 @@
                         </div>
                   </div>
             </form>
-      </div>
+    </div>
 
     <script src="./JS_Folder/create_class/create-class-popup-cookie.js"></script>
     <script src="./JS_Folder/create_class/more-color.js"></script>
