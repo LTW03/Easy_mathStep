@@ -79,7 +79,7 @@ include('teacher_base.php');
                     }
                     ?>
                 </div>
-                <input type="hidden" id="character_edit" name="character_edit">
+                <input type="hidden" id="character_edit" name="character_edit" required>
                 <button type="submit" class="next-btn" id="next">Next</button>
             </form>
         </div>
@@ -161,7 +161,9 @@ include('teacher_base.php');
                         <?php echo '</tr>';
                         }
                         } else {
-                              echo "No student found.";
+                              echo '<tr>';
+                              echo "<td>No student found.";
+                              echo '</tr>';
                         }
 
                   ?>
@@ -199,21 +201,21 @@ include('teacher_base.php');
                         <!-- choose profile -->
                         <a class="new-student-popup-title">Choose profile for your student</a>
                         <div class="profile-list" id="profile-list">
-                        <?php
-                        // Fetch character data
-                        $sql = "SELECT `character_id`, `character_path` FROM `character`";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                        echo '<div class="profile" onclick="selectCharacter(' . $row["character_id"] . ')">';
-                        echo '<img src="' . $row["character_path"] . '" alt="animal">';
-                        echo '</div>';
-                        }
-                        } else {
-                              echo "No images found.";
-                        }
-                        $conn->close();
-                        ?>
+                              <?php
+                                    // Fetch character data
+                                    $sql = "SELECT `character_id`, `character_path` FROM `character`";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                          while($row = $result->fetch_assoc()) {
+                                          echo '<div class="profile" onclick="selectCharacter(' . $row["character_id"] . ')">';
+                                          echo '<img src="' . $row["character_path"] . '" alt="animal">';
+                                          echo '</div>';
+                                          }
+                                    } else {
+                                          echo "No images found.";
+                                    }
+                                    $conn->close();
+                              ?>
                         </div>
                         <input type="hidden" id="character" name="character">     
                         <button type="submit" class="next-btn" id="next">Next</button>  
