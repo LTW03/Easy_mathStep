@@ -13,7 +13,7 @@ include('Teacher_loginValidate.php')
 <body>
     <div class="header">
         <div class="back_btn">
-            <a href="#">
+            <a href="#" id = "back_btn">
                 <button class="backBtn_icon">
                     <i class="fas fa-chevron-left"></i>
                 </button>

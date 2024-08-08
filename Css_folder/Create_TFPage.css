@@ -212,6 +212,56 @@ body {
     display: none; 
     margin: 10px auto; 
 }
+.not_savingDraft {
+    display: none; 
+    position: fixed;
+    left: 0; 
+    top: 80px; 
+    width: 100%; 
+    overflow: auto;
+    z-index: 1000;
+}
+
+.not_savingDraft-content {
+    background-color: #fff;
+    margin: 13% auto; 
+    padding: 40px; 
+    border: 1px solid #ccc; 
+    width: 500px; 
+    text-align: center;
+    border-radius: 8px;
+}
+
+.not_savingDraft-content p {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #333;
+}
+
+.not_savingDraft-content button {
+    background-color: #0056b1;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.not_savingDraft-content button:hover {
+    background-color: #2079d7;
+}
+
+.not_savingDraft-content #not_savingDraft-no-btn {
+    background-color: #A00000;
+}
+
+.not_savingDraft-content #not_savingDraft-no-btn:hover {
+    background-color: #cc1a1a;
+}
+
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
