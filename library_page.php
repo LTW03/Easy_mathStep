@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,31 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Css_folder/teacher_base.css">
     <link rel="stylesheet" href="./Css_folder/library_page.css">
-    <!-- <link rel="stylesheet" href="Css_folder/general.css"> -->
-
-      <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
-      <script defer src="JS_Folder/teacher_base.js"></script> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script defer src="JS_Folder/teacher_base.js"></script> 
     <title>Library | E.M.S</title>
 </head>
 <body>
     <?php
     include('teacher_base.php');
 
-    $sql = "SELECT lesson_name, question_type, date_changes FROM lesson WHERE teacher_email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $user_email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    $sql = "SELECT lesson_name, question_type, date_changes FROM lesson WHERE teacher_email = ?";
+    $sql = "SELECT lesson_id, lesson_name, question_type, date_changes FROM lesson WHERE teacher_email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $user_email);
     $stmt->execute();
     $result = $stmt->get_result();
 
     while ($row = $result->fetch_assoc()) {
+        $lesson_id = htmlspecialchars($row['lesson_id']);
         $lesson_name = htmlspecialchars($row['lesson_name']);
         $question_type = htmlspecialchars($row['question_type']);
         $date_changes = htmlspecialchars($row['date_changes']);
@@ -42,14 +33,13 @@
         $days_ago = $interval->days . " days ago";
 
         $TFicon = "<i class='fas fa-check-circle'></i>";
-        $TFedit_page = "EditTF.html";
+        $TFedit_page = "./EditTF.html?lesson_id=$lesson_id";
 
         $dragNdrog_icon = "<i class='far fa-hand-lizard'></i>";
-        $dragNdrogEdit_page = "EditDg.html";
+        $dragNdrogEdit_page = "./EditDg.html?lesson_id=$lesson_id";
 
         $MCQ_icon = "<i class='fas fa-question-circle'></i>";
-        $MCQ_edit_page = "Edit_MCQ.html";
-
+        $MCQ_edit_page = "./Edit_MCQ.php?lesson_id=$lesson_id";
 
         $icon = $dragNdrog_icon;
         $edit_page = $dragNdrogEdit_page;
