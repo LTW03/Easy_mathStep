@@ -101,6 +101,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('.assign-lesson').forEach(btn => {
         btn.addEventListener('click', (event) => {
             event.stopPropagation();
+            const classCard = btn.closest('.class-card');
+            const classId = classCard.dataset.classId;
+            document.getElementById('class_id_hidden').value = classId;
             showPopup(addLessonPopup);
         });
     });

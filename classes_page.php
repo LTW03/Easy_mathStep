@@ -10,16 +10,62 @@
 
       <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      <style>
+        .lesson-selection{
+            cursor: pointer; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
+        .lesson-selection select {
+            padding: 0.5rem;
+            width: 90%;
+            margin-top:9%;
+            height: 30%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: var(--normal-font-size);
+            color: var(--text-color);
+            background-color: var(--container-color);
+            font-family: var(--body-font);
+        }
+
+        .lesson-selection select:focus {
+            border-color: var(--first-color);
+            outline: none;
+        }
+            </style>
       <script defer src="./JS_Folder/teacher_base.js"></script> 
     <title>Class | E.M.S</title>
 </head>
 <body>
     <?php
     include('teacher_base.php');
-    $sql = "SELECT class.class_id, class.class_name, class.student_amount, class.teacher_email, class.color_id, color.* FROM class JOIN color ON class.color_id = color.color_id WHERE class.teacher_email = '$user_email';";
+    $sql = "SELECT 
+            c.class_id, 
+            c.class_name, 
+            c.student_amount, 
+            c.color_id, 
+            color.hex_code,
+            GROUP_CONCAT(l.lesson_name SEPARATOR ', ') AS assigned_lessons
+        FROM 
+            class c
+        JOIN 
+            color ON c.color_id = color.color_id
+        LEFT JOIN 
+            assigned a ON c.class_id = a.class_id
+        LEFT JOIN 
+            lesson l ON a.lesson_id = l.lesson_id
+        WHERE 
+            c.teacher_email = '$user_email'
+        GROUP BY 
+            c.class_id";
 
     $class = $conn->query($sql);
+    $teacher_email = 'limtingwei2003@gmail.com';
+    $sql_lessons = "SELECT lesson_id, lesson_name, question_type FROM lesson WHERE teacher_email = '$teacher_email'";
+    $lessons = $conn->query($sql_lessons);
     ?>
           <!-- class card content -->
     <div class="cardcontent">
@@ -27,15 +73,18 @@
         if ($class->num_rows > 0) {
             // Output data for each class
             while($row = $class->fetch_assoc()) {
-                echo '<div onclick="classCookie(' . $row["class_id"] . ', 30); window.location.href=\'Class-Detail.php\';" class="class-card" style="border: solid ' . $row["hex_code"] . ';" data-class-id="' . $row["class_id"] . '">';
+                $class_id_fetch = $row["class_id"];
+                $assigned_lessons = !empty($row["assigned_lessons"]) ? htmlspecialchars($row["assigned_lessons"]) : "No lessons assigned yet.";
+                echo '<div onclick="classCookie(' . $class_id_fetch . ', 30); window.location.href=\'Class-Detail.php\';" class="class-card" style="border: solid ' . $row["hex_code"] . ';" data-class-id="' . $row["class_id"] . '">';
                 echo    '<h3>' . htmlspecialchars($row["class_name"]) . '</h3>';
                 echo    '<i class="bx bx-dots-vertical-rounded class-more"></i>';
                 echo    '<div class="delete-edit-cls-popup">';
-                echo        '<div class="edit-cls" data-class-id="' . $row["class_id"] . '" data-class-name="' . htmlspecialchars($row["class_name"]) . '"><i class="bx bxs-edit delete-edit-cls"><span class="icon-title"> Edit class name</span></i></div>';
-                echo        '<div class="delete-cls" data-class-id-delete="' . $row["class_id"] . '"><i class="bx bxs-trash-alt delete-edit-cls"><span class="icon-title"> Delete your class</span></i></div>';
-                echo        '<div class="assign-lesson" data-class-id-lesson="' . $row["class_id"] . '"><i class="bx bxs-book-add delete-edit-cls"><span class="icon-title"> Assign lesson</span></i></div>';
+                echo        '<div class="edit-cls" data-class-id="' . $class_id_fetch . '" data-class-name="' . htmlspecialchars($row["class_name"]) . '"><i class="bx bxs-edit delete-edit-cls"><span class="icon-title"> Edit class name</span></i></div>';
+                echo        '<div class="delete-cls" data-class-id-delete="' . $class_id_fetch . '"><i class="bx bxs-trash-alt delete-edit-cls"><span class="icon-title"> Delete your class</span></i></div>';
+                echo        '<div class="assign-lesson" data-class-id-lesson="' . $class_id_fetch . '"><i class="bx bxs-book-add delete-edit-cls"><span class="icon-title"> Assign lesson</span></i></div>';
                 echo    '</div>';
-                echo    '<a>' . htmlspecialchars($row["student_amount"]) . ' Student(s)</a>';
+                echo    '<a>' . htmlspecialchars($row["student_amount"]) . ' Student(s)</a></br>';
+                echo    '<a> Assigned Class :' . htmlspecialchars($assigned_lessons) . '</a>';
                 echo '</div>';
             }
         } else {
@@ -79,18 +128,35 @@
 
 
     <!-- add lesson to class-->
+    <!-- add lesson to class -->
     <div class="add-lesson-popup" id="add-lesson-popup">
         <a class="popup-title">Assign a lesson to class</a>
-        <a class="popup-subtitle">Please choose a lesson you want assign to this class</a>
-        <i class='bx bx-x  delete-cls-close' id="add-lesson-close"></i>
-        <form action="">
+        <a class="popup-subtitle">Please choose a lesson you want to assign to this class</a>
+        <i class='bx bx-x delete-cls-close' id="add-lesson-close"></i>
+        <form action="./Classes-backend/assign_lesson.php" method="post">
+            <input type="hidden" id="class_id_hidden" name="class_id" value="">
+            <div class="lesson-selection">
+                <?php if ($lessons->num_rows > 0) : ?>
+                    <select name="lesson_id" id="lesson_id" required>
+                        <option value="">Select a Lesson</option>
+                        <?php while($lesson = $lessons->fetch_assoc()) : ?>
+                            <option value="<?= $lesson['lesson_id'] ?>">
+                                <?= htmlspecialchars($lesson['lesson_name']) ?> - <?= htmlspecialchars($lesson['question_type']) ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                <?php else : ?>
+                    <p>No lessons available to assign.</p>
+                <?php endif; ?>
+            </div>
+
             <div class="edit-cls-btn">
                 <input class="edit-cancel-btn" type="button" name="" id="add-lesson-cancel-btn" value="Cancel">
-                <button type="submit" class="save-btn">Comfirm</button>
+                <button type="submit" class="save-btn">Confirm</button>
             </div>
         </form>
-        
     </div>
+
 
     <div class="create_class-popup hide" id="create-class-popup">     
             <a class="popup-title">Create a new class</a>
