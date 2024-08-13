@@ -12,10 +12,10 @@ function addQuestion() {
     newQuestionBlock.innerHTML = `
         <h3>Question ${tfQuestionCount}</h3>
         <label for="question${tfQuestionCount}">Question:</label>
-        <input type="text" id="question${tfQuestionCount}" name="question${tfQuestionCount}" required><br><br>
+        <input type="text" id="question${tfQuestionCount}" name="question${tfQuestionCount}" required>
 
         <label for="questionAudio${tfQuestionCount}">Upload Question Audio:</label>
-        <input type="file" id="questionAudio${tfQuestionCount}" name="questionAudio${tfQuestionCount}" accept="audio/*"><br><br>
+        <input type="file" id="questionAudio${tfQuestionCount}" name="questionAudio${tfQuestionCount}" accept="audio/*">
 
         <div class="options-container">
             <div class="option">
@@ -26,12 +26,12 @@ function addQuestion() {
                 <input type="radio" id="false${tfQuestionCount}" name="correctAnswer${tfQuestionCount}" value="false" required>
                 <label for="false${tfQuestionCount}">False</label>
             </div>
-        </div><br><br>
+        </div>
 
         <label for="questionImage${tfQuestionCount}">Upload Encouragement Image:</label>
-        <input type="file" id="questionImage${tfQuestionCount}" name="questionImage${tfQuestionCount}" accept="image/*" onchange="previewImage(event, 'imagePreview${tfQuestionCount}', 'loader${tfQuestionCount}')"><br><br>
+        <input type="file" id="questionImage${tfQuestionCount}" name="questionImage${tfQuestionCount}" accept="image/*" onchange="previewImage(event, 'imagePreview${tfQuestionCount}', 'loader${tfQuestionCount}')">
         <img id="imagePreview${tfQuestionCount}" src="" alt="Encouragement Image Preview" style="display: none;"><br><br>
-        <div id="loader${tfQuestionCount}" class="loader" style="display: none;"></div><br><br>
+        <div id="loader${tfQuestionCount}" class="loader" style="display: none;"></div>
 
         <label for="encouragement${tfQuestionCount}">Encouragement Text:</label>
         <input type="text" id="encouragement${tfQuestionCount}" name="encouragement${tfQuestionCount}" placeholder="Enter encouragement text"><br><br>
@@ -39,7 +39,7 @@ function addQuestion() {
         <label for="isEncouragement${tfQuestionCount}">
             <input type="checkbox" id="isEncouragement${tfQuestionCount}" name="isEncouragement${tfQuestionCount}">
             Mark as encouragement
-        </label><br><br>
+        </label>
 
         <button type="button" class="delete-question" onclick="deleteQuestion('questionBlock${tfQuestionCount}')"><i class="fas fa-trash-alt"></i></button>
     `;

@@ -239,7 +239,7 @@ body {
 }
 
 .not_savingDraft-content button {
-    background-color: #0056b1;
+    background-color: #A00000 ;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -251,15 +251,15 @@ body {
 }
 
 .not_savingDraft-content button:hover {
-    background-color: #2079d7;
+    background-color: #cc1a1a;
 }
 
 .not_savingDraft-content #not_savingDraft-no-btn {
-    background-color: #A00000;
+    background-color:#0056b1;
 }
 
 .not_savingDraft-content #not_savingDraft-no-btn:hover {
-    background-color: #cc1a1a;
+    background-color:#2079d7 ;
 }
 
 
