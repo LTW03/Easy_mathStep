@@ -12,10 +12,10 @@ function addQuestion() {
     newQuestionBlock.innerHTML = `
         <h3>Question ${questionCount}</h3>
         <label for="question${questionCount}">Question:</label>
-        <input type="text" id="question${questionCount}" name="question${questionCount}" required><br><br>
+        <input type="text" id="question${questionCount}" name="question${questionCount}" required>
 
         <label for="questionAudio${questionCount}">Upload Question Audio:</label>
-        <input type="file" id="questionAudio${questionCount}" name="questionAudio${questionCount}" accept="audio/*"><br><br>
+        <input type="file" id="questionAudio${questionCount}" name="questionAudio${questionCount}" accept="audio/*">
 
         <div class="options-container">
             <div class="option">
@@ -38,12 +38,12 @@ function addQuestion() {
                 <input type="text" id="option${questionCount}_4" name="option${questionCount}_4" placeholder="Option 4" required>
                 <input type="file" id="optionAudio${questionCount}_4" name="optionAudio${questionCount}_4" accept="audio/*">
             </div>
-        </div><br><br>
+        </div>
 
         <label for="questionImage${questionCount}">Upload Encouragement Image:</label>
-        <input type="file" id="questionImage${questionCount}" name="questionImage${questionCount}" accept="image/*" onchange="previewImage(event, 'imagePreview${questionCount}', 'loader${questionCount}')"><br><br>
+        <input type="file" id="questionImage${questionCount}" name="questionImage${questionCount}" accept="image/*" onchange="previewImage(event, 'imagePreview${questionCount}', 'loader${questionCount}')">
         <img id="imagePreview${questionCount}" src="" alt="Encouragement Image Preview" style="display: none;"><br><br>
-        <div id="loader${questionCount}" class="loader" style="display: none;"></div><br><br>
+        <div id="loader${questionCount}" class="loader" style="display: none;"></div>
 
         <label for="encouragement${questionCount}">Encouragement Text:</label>
         <input type="text" id="encouragement${questionCount}" name="encouragement${questionCount}" placeholder="Enter encouragement text"><br><br>
@@ -51,7 +51,7 @@ function addQuestion() {
         <label for="isEncouragement${questionCount}">
             <input type="checkbox" id="isEncouragement${questionCount}" name="isEncouragement${questionCount}">
             Mark as encouragement
-        </label><br><br>
+        </label>
 
         <button type="button" class="delete-question" onclick="deleteQuestion('questionBlock${questionCount}')"><i class="fas fa-trash-alt"></i></button>
     `;

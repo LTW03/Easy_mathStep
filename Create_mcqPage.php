@@ -36,7 +36,7 @@ include('Teacher_loginValidate.php')
             <h1>Create a Quiz</h1>
             <form id="quizForm" action="Create_mcqSavingProcess.php" method="POST" enctype="multipart/form-data">
                 <label for="quizName">Quiz/Lesson Name:</label>
-                <input type="text" id="quizName" name="quizName" required><br><br>
+                <input type="text" id="quizName" name="quizName" required><br>
 
                 <div id="questionsContainer">
                     <!-- dynamically question input -->
