@@ -28,13 +28,13 @@ include('Teacher_loginValidate.php')
             <h1>Create a new exercise</h1>
             <input type="text" placeholder="Enter type of exercise">
             <div class="exercise_buttons">
-                <a href="Create_TF_Page.php">
+                <a href="./Create_TF_Page.php">
                     <div class="btn">
                         <i class="fas fa-check-square"></i>
                         True/False
                     </div>
                 </a>
-                <a href="#">
+                <a href="./Create_DG_Page.php">
                     <div class="btn">
                         <i class="fas fa-arrows-alt"></i>
                         Drag and Drop
