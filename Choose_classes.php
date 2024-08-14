@@ -47,7 +47,7 @@
                     
                     echo '<div class="swiper-slide" style="background-color: rgba(' . $r . ', ' . $g . ', ' . $b . ', ' . $alpha . ');">';
                     echo '<div class="carousel-item" style="border: 3px solid ' . $row['hex_code'] . ';">';
-                    echo '<a href="testClassId.php?class_id=' . $row['class_id'] . '">';
+                    echo '<a href="./Choose_Student.php?class_id=' . $row['class_id'] . '">';
                     echo '<button type="button" class="carouselItemBtn">Join!</button>';
                     echo '</a> ' . $row['class_name'];
                     echo '</div>';
