@@ -62,10 +62,12 @@ function addOption(questionId) {
     optionCounts[questionId]++; // Increment the option count for this specific question
 }
 
-function deleteQuestion(questionId) {
-    const questionBlock = document.getElementById(`questionBlock${questionId}`);
-    questionBlock.remove();
-    renumberQuestions();
+function deleteQuestion(questionNumber) {
+    const questionBlock = document.getElementById(`questionBlock${questionNumber}`);
+    if (questionBlock) {
+        questionBlock.remove();
+        renumberQuestions();
+    }
 }
 
 function previewImage(event, previewId, loaderId) {
@@ -95,50 +97,134 @@ function previewImage(event, previewId, loaderId) {
     }
 }
 
+
 function renumberQuestions() {
-    const questionBlocks = document.querySelectorAll('.question-block');
-    questionBlocks.forEach((block, index) => {
-        const currentNumber = index + 1;
-        block.id = `questionBlock${currentNumber}`;
-        block.querySelector('h3').textContent = `Question ${currentNumber}`;
-
-        block.querySelector('label[for^="question"]').setAttribute('for', `question${currentNumber}`);
-        block.querySelector('input[type="text"]').name = `question${currentNumber}`;
-        block.querySelector('input[type="text"]').id = `question${currentNumber}`;
-
-        block.querySelector('label[for^="questionAudio"]').setAttribute('for', `questionAudio${currentNumber}`);
-        block.querySelector('input[type="file"]').id = `questionAudio${currentNumber}`;
-        block.querySelector('input[type="file"]').name = `questionAudio${currentNumber}`;
-
-        block.querySelectorAll('input[type="radio"]').forEach((radio, radioIndex) => {
-            radio.name = `correctAnswer${currentNumber}`;
-            radio.value = `option${currentNumber}_${radioIndex + 1}`;
-        });
-
-        block.querySelectorAll('input[type="text"]').forEach((text, textIndex) => {
-            text.id = `option${currentNumber}_${textIndex + 1}`;
-            text.name = `option${currentNumber}_${textIndex + 1}`;
-        });
-
-        block.querySelectorAll('input[type="file"]').forEach((file, fileIndex) => {
-            file.id = file.id.includes('questionAudio') ? 
-                `questionAudio${currentNumber}` : 
-                `optionAudio${currentNumber}_${fileIndex + 1}`;
-            file.name = file.id;
-        });
-
-        const img = block.querySelector('img');
-        const imgId = `imagePreview${currentNumber}`;
-        img.id = imgId;
-        img.parentNode.querySelector('.loader').id = `loader${currentNumber}`;
-
-        block.querySelectorAll('label[for]').forEach(label => {
-            label.setAttribute('for', label.getAttribute('for').replace(/\d+$/, currentNumber));
-        });
-
-        block.querySelector('input[type="checkbox"]').id = `isEncouragement${currentNumber}`;
-        block.querySelector('input[type="checkbox"]').name = `isEncouragement${currentNumber}`;
+    // Get all question blocks and sort them based on their current order
+    const questionBlocks = Array.from(document.querySelectorAll('.question-block')).sort((a, b) => {
+        const numA = parseInt(a.id.replace('questionBlock', ''), 10);
+        const numB = parseInt(b.id.replace('questionBlock', ''), 10);
+        return numA - numB;
     });
+
+    // Update each question block's number and associated elements
+    questionBlocks.forEach((block, index) => {
+        const newNumber = index + 1; // New sequential number (1, 2, 3, ...)
+
+        // Update question block id
+        block.id = `questionBlock${newNumber}`;
+
+        // Update question header
+        const questionHeader = block.querySelector('h3');
+        if (questionHeader) questionHeader.textContent = `Question ${newNumber}`;
+
+        // Update the main question input fields
+        const questionInput = block.querySelector('input[name^="question"]');
+        if (questionInput) {
+            questionInput.name = `question${newNumber}`;
+            questionInput.id = `question${newNumber}`;
+        }
+
+        const questionAudio = block.querySelector('input[type="file"][name^="questionAudio"]');
+        if (questionAudio) {
+            questionAudio.name = `questionAudio${newNumber}`;
+            questionAudio.id = `questionAudio${newNumber}`;
+        }
+
+        // Update options within the question block
+        const options = block.querySelectorAll('.option');
+        options.forEach((option, optionIndex) => {
+            const optionNumber = optionIndex + 1;
+
+            // Update option text and attributes
+            const optionLabel = option.querySelector('label');
+            if (optionLabel) optionLabel.textContent = `Option ${optionNumber}:`;
+
+            const optionTextInput = option.querySelector('input[type="text"][name^="options"]');
+            if (optionTextInput) {
+                optionTextInput.name = `options${newNumber}[]`;
+                optionTextInput.id = `options${newNumber}_${optionNumber}`;
+            }
+
+            const isCorrectCheckbox = option.querySelector('input[type="checkbox"][name^="is_correct"]');
+            if (isCorrectCheckbox) {
+                isCorrectCheckbox.name = `is_correct${newNumber}[]`;
+                isCorrectCheckbox.value = `${optionNumber}`;
+            }
+
+            const blankPositionInput = option.querySelector('input[type="number"][name^="blank_position"]');
+            if (blankPositionInput) {
+                blankPositionInput.name = `blank_position${newNumber}[]`;
+            }
+        });
+
+        // Update image and encouragement fields
+        const img = block.querySelector('img[id^="imagePreview"]');
+        if (img) img.id = `imagePreview${newNumber}`;
+
+        const loader = block.querySelector('.loader[id^="loader"]');
+        if (loader) loader.id = `loader${newNumber}`;
+
+        const questionImage = block.querySelector('input[type="file"][name^="questionImage"]');
+        if (questionImage) {
+            questionImage.name = `questionImage${newNumber}`;
+            questionImage.id = `questionImage${newNumber}`;
+        }
+
+        const encouragementText = block.querySelector('input[type="text"][name^="encouragement"]');
+        if (encouragementText) {
+            encouragementText.name = `encouragement${newNumber}`;
+            encouragementText.id = `encouragement${newNumber}`;
+        }
+
+        const isEncouragementCheckbox = block.querySelector('input[type="checkbox"][name^="isEncouragement"]');
+        if (isEncouragementCheckbox) {
+            isEncouragementCheckbox.name = `isEncouragement${newNumber}`;
+            isEncouragementCheckbox.id = `isEncouragement${newNumber}`;
+        }
+
+        // Update delete button
+        const deleteButton = block.querySelector('.delete-question');
+        if (deleteButton) deleteButton.setAttribute('onclick', `deleteQuestion(${newNumber})`);
+    });
+}
+
+
+function saveQuiz(event) {
+    event.preventDefault();
+    const quizForm = document.getElementById('quizForm');
+    const formData = new FormData(quizForm);
+
+    let valid = true;
+
+    for (let [key, value] of formData.entries()) {
+        if (key.includes('question') && !key.includes('Text') && !key.includes('Image') && !key.includes('Audio') && !value) {
+            valid = false;
+            break;
+        }
+    }
+
+    if (!valid) {
+        alert("All fields must be filled");
+        return;
+    }
+
+    const checkbox = document.querySelectorAll('input[type="checkbox"]');
+    let checkboxCheck = Array.from(checkbox).some(checkbox => checkbox.checked);
+
+    if (!checkboxCheck) {
+        alert("Please select at least one correct answer for each question.");
+        return;
+    }
+
+    const numberbox = document.querySelectorAll('input[type="number"]');
+    let numberboxCheck = Array.from(numberbox).some(number => number.value);
+
+    if (!numberboxCheck) {
+        alert("Please insert the blank position");
+        return;
+    }
+
+    quizForm.submit();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
