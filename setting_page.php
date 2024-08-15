@@ -60,9 +60,14 @@
             <button type="submit" class="btn btn-primary" id="updatePasswordBtn" disabled>Update Password</button>
         </form>
 
-        <button class="btn btn-danger">Remove Account</button>
+        <button class="btn btn-danger" id="delete_account" onclick = "">Remove Account</button>
     </div>
     
     <script src="./JS_Folder/setting.js"></script>
+    <script>
+        document.getElementById("delete_account").onclick= function(){
+            window.location.href = "./Delete_accPage.php/?email=<?php echo $user_email?>"
+        }
+    </script>
 </body>
 </html>
