@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 13, 2024 at 04:48 AM
+-- Generation Time: Aug 15, 2024 at 10:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -190,7 +190,6 @@ CREATE TABLE `completion` (
   `completion_status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 -- --------------------------------------------------------
 
 --
@@ -206,6 +205,18 @@ CREATE TABLE `draggable_options` (
   `blank_position` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `draggable_options`
+--
+
+INSERT INTO `draggable_options` (`drag_option_id`, `question_id`, `drag_option_audio`, `drag_option_text`, `is_correct`, `blank_position`) VALUES
+(1, 6, NULL, 'F. Scott Fitzgerald', 1, 1),
+(2, 6, NULL, 'New York', 1, 2),
+(3, 6, NULL, 'Chicago', 0, 0),
+(4, 7, NULL, 'USA', 0, 0),
+(5, 7, NULL, 'Paris', 1, 1),
+(6, 7, NULL, 'KLCC', 0, 0),
+(7, 7, NULL, 'Eiffel Tower', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -228,7 +239,8 @@ CREATE TABLE `lesson` (
 INSERT INTO `lesson` (`lesson_id`, `lesson_name`, `teacher_email`, `question_type`, `date_changes`) VALUES
 (1, 'TrueFalseQuiz_Class1', 'limtingwei2003@gmail.com', 'TF', '2024-08-05 11:43:42'),
 (2, 'MCQquiz_Class2', 'limtingwei2003@gmail.com', 'MCQ', '2024-08-10 11:25:59'),
-(3, 'testing', 'limtingwei2003@gmail.com', 'DragDrop', '2024-08-10 11:27:59');
+(3, 'testing', 'limtingwei2003@gmail.com', 'MCQ', '2024-08-15 16:18:08'),
+(4, 'drag and drop question', 'limtingwei2003@gmail.com', 'DragDrop', '2024-08-15 16:17:41');
 
 -- --------------------------------------------------------
 
@@ -280,7 +292,9 @@ INSERT INTO `question` (`question_id`, `question_text`, `question_audio`, `lesso
 (2, 'two = 2', 'src/question_audio/two.m4a', 1),
 (3, '1 + 1 = ?', NULL, 2),
 (4, '26 + 5 -  2 - 3 = 26', 'src/question_audio/26.m4a', 3),
-(5, 'ascsaxa', '../../src/question_audio/26 copy.m4a', 2);
+(5, 'ascsaxa', '../../src/question_audio/26 copy.m4a', 2),
+(6, '[BLANK1]wrote The Great Gatsby. The story is set in[BLANK2].', '', 4),
+(7, 'The capital of France is[BLANK1], and its famous tower is the[BLANK2].', '', 4);
 
 -- --------------------------------------------------------
 
@@ -303,8 +317,8 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_email`, `student_stat`, `student_fname`, `student_lname`, `gender`, `character_id`, `class_id`) VALUES
-('alicedaddy@gmail.com', 1, 'lee', 'Johnson', 'female', NULL, 22),
-('bobmommy@gmail.com', 0, 'Bob', 'Brown', 'Male', NULL, 22),
+('alicedaddy@gmail.com', 1, 'lee', 'Johnson', 'female', 8, 22),
+('bobmommy@gmail.com', 0, 'Bob', 'Brown', 'Male', 16, 22),
 ('limtingwei2003@gmail.com', NULL, 'Lim', 'Ting Wei', 'male', 6, 26),
 ('limtingwei200@gmail.com', NULL, 'Lim', 'Ting Wei', 'male', 5, 33);
 
@@ -375,7 +389,9 @@ INSERT INTO `words` (`word_id`, `word_text`, `is_encouragement`, `img_path`, `qu
 (2, '', 0, '', 2),
 (3, 'Do not let what you cannot do interfere with what you can do.', 1, NULL, 3),
 (4, '', 0, '', 4),
-(5, 'axaxa', 1, '../../src/encouragement_source/main-qimg-6d93167b7062f53c6060361360ead4f8-pjlq.jpeg', 5);
+(5, 'axaxa', 1, '../../src/encouragement_source/main-qimg-6d93167b7062f53c6060361360ead4f8-pjlq.jpeg', 5),
+(6, 'keep on going', 1, '', 6),
+(7, '', 0, '', 7);
 
 --
 -- Indexes for dumped tables
@@ -422,7 +438,6 @@ ALTER TABLE `completion`
 ALTER TABLE `draggable_options`
   ADD PRIMARY KEY (`drag_option_id`),
   ADD KEY `question_id` (`question_id`);
-
 
 --
 -- Indexes for table `lesson`
@@ -505,13 +520,13 @@ ALTER TABLE `color`
 -- AUTO_INCREMENT for table `draggable_options`
 --
 ALTER TABLE `draggable_options`
-  MODIFY `drag_option_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `drag_option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `mcq_answer`
@@ -523,7 +538,7 @@ ALTER TABLE `mcq_answer`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `true_false_options`
@@ -535,7 +550,7 @@ ALTER TABLE `true_false_options`
 -- AUTO_INCREMENT for table `words`
 --
 ALTER TABLE `words`
-  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -563,7 +578,7 @@ ALTER TABLE `completion`
   ADD CONSTRAINT `completion_ibfk_2` FOREIGN KEY (`student_email`) REFERENCES `student` (`student_email`);
 
 --
--- Constraints for table `dragdropmapping`
+-- Constraints for table `draggable_options`
 --
 ALTER TABLE `draggable_options`
   ADD CONSTRAINT `draggable_options_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
