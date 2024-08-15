@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 22, 2024 at 06:22 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: Aug 13, 2024 at 04:48 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `assigned`
+--
+
+CREATE TABLE `assigned` (
+  `assign_key` int(11) NOT NULL,
+  `lesson_id` int(11) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `assigned`
+--
+
+INSERT INTO `assigned` (`assign_key`, `lesson_id`, `class_id`) VALUES
+(6, 2, 33),
+(7, 3, 26),
+(8, 3, 27),
+(9, 2, 34);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `character`
 --
 
@@ -38,7 +60,61 @@ CREATE TABLE `character` (
 
 INSERT INTO `character` (`character_id`, `character_path`) VALUES
 (1, 'delapouite/unicorn.png'),
-(2, 'delapouite/charging-bull.png');
+(2, 'delapouite/charging-bull.png'),
+(3, 'delapouite/armadillo.png'),
+(4, 'delapouite/bastet.png'),
+(5, 'delapouite/bear-head.png'),
+(6, 'delapouite/beaver.png'),
+(7, 'delapouite/bison.png'),
+(8, 'delapouite/buffalo-head.png'),
+(9, 'delapouite/camel-head.png'),
+(10, 'delapouite/camel.png'),
+(11, 'delapouite/cow.png'),
+(12, 'delapouite/dolphin.png'),
+(13, 'delapouite/elephant-head.png'),
+(14, 'delapouite/elephant.png'),
+(15, 'delapouite/feline.png'),
+(16, 'delapouite/gorilla.png'),
+(17, 'delapouite/horse-head.png'),
+(18, 'delapouite/juggling-seal.png'),
+(19, 'delapouite/jumping-dog.png'),
+(20, 'delapouite/kangaroo.png'),
+(21, 'delapouite/koala.png'),
+(22, 'delapouite/labrador-head.png'),
+(23, 'delapouite/lynx-head.png'),
+(24, 'delapouite/mammoth.png'),
+(25, 'delapouite/panda.png'),
+(26, 'delapouite/rabbit-head.png'),
+(27, 'delapouite/rabbit.png'),
+(28, 'delapouite/raccoon-head.png'),
+(29, 'delapouite/ram-profile.png'),
+(30, 'delapouite/rhinoceros-horn.png'),
+(31, 'delapouite/saber-toothed-cat-head.png'),
+(32, 'delapouite/sheep.png'),
+(33, 'delapouite/sitting-dog.png'),
+(34, 'delapouite/sperm-whale.png'),
+(35, 'delapouite/squirrel.png'),
+(36, 'delapouite/tapir.png'),
+(37, 'delapouite/tiger-head.png'),
+(38, 'delapouite/tiger.png'),
+(39, 'delapouite/walrus-head.png'),
+(40, 'delapouite/anteater_2253681.png'),
+(41, 'delapouite/antelope_4726758.png'),
+(42, 'delapouite/chimpanzee_6158410.png'),
+(43, 'delapouite/crocodile_697183.png'),
+(44, 'delapouite/dolphin_202208.png'),
+(45, 'delapouite/eagle_235399.png'),
+(46, 'delapouite/giraffe_1888365.png'),
+(47, 'delapouite/hamster_5389261.png'),
+(48, 'delapouite/gorilla_3251167.png'),
+(49, 'delapouite/hippopotamus_194959.png'),
+(50, 'delapouite/koala_3069172.png'),
+(51, 'delapouite/pig_1960025.png'),
+(52, 'delapouite/raccoon_8034530.png'),
+(53, 'delapouite/rhinoceros_3831184.png'),
+(54, 'delapouite/sheep_9220496.png'),
+(55, 'delapouite/turtle_3436818.png'),
+(56, 'delapouite/wolf_235427.png');
 
 -- --------------------------------------------------------
 
@@ -59,10 +135,14 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`class_id`, `class_name`, `student_amount`, `teacher_email`, `color_id`) VALUES
-(2, 'tingting1345', 30, 'jane.smith@example.com', 2),
-(22, 'chinchin4', NULL, 'ikhwannabil77@gmail.com', 7),
-(23, 'tingting1313', NULL, 'ikhwannabil77@gmail.com', 1),
-(24, 'tingting134', NULL, 'ikhwannabil77@gmail.com', 4);
+(2, 'tingting1345', 30, 'jane.smith@example.com', 1),
+(22, 'chinchin4', 10, 'ikhwannabil77@gmail.com', 7),
+(23, 'tingting1313', 1, 'ikhwannabil77@gmail.com', 1),
+(26, 'test5', 1, 'limtingwei2003@gmail.com', 6),
+(27, 'class 2', 0, 'limtingwei2003@gmail.com', 7),
+(31, 'class 2', 0, 'ikhwannabil77@gmail.com', 14),
+(33, 'tingting1346', 0, 'limtingwei2003@gmail.com', 8),
+(34, 'tingting1344', 0, 'limtingwei2003@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -110,18 +190,6 @@ CREATE TABLE `completion` (
   `completion_status` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `dragdropmapping`
---
-
-CREATE TABLE `dragdropmapping` (
-  `mapping_id` int(11) NOT NULL,
-  `question_id` int(11) DEFAULT NULL,
-  `draggable_item` int(11) DEFAULT NULL,
-  `droppable_target` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -131,20 +199,13 @@ CREATE TABLE `dragdropmapping` (
 
 CREATE TABLE `draggable_options` (
   `drag_option_id` int(11) NOT NULL,
+  `question_id` int(11) DEFAULT NULL,
   `drag_option_audio` varchar(255) DEFAULT NULL,
-  `drag_option_text` text DEFAULT NULL
+  `drag_option_text` text DEFAULT NULL,
+  `is_correct` tinyint(1) DEFAULT 0,
+  `blank_position` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `droppable`
---
-
-CREATE TABLE `droppable` (
-  `droppable_id` int(11) NOT NULL,
-  `droppable_text` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -160,19 +221,16 @@ CREATE TABLE `lesson` (
   `date_changes` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `lesson`
+--
+
+INSERT INTO `lesson` (`lesson_id`, `lesson_name`, `teacher_email`, `question_type`, `date_changes`) VALUES
+(1, 'TrueFalseQuiz_Class1', 'limtingwei2003@gmail.com', 'TF', '2024-08-05 11:43:42'),
+(2, 'MCQquiz_Class2', 'limtingwei2003@gmail.com', 'MCQ', '2024-08-10 11:25:59'),
+(3, 'testing', 'limtingwei2003@gmail.com', 'DragDrop', '2024-08-10 11:27:59');
+
 -- --------------------------------------------------------
-
---
--- Table structure for table `assigned`
---
-
-CREATE TABLE `assigned`(
-  `assign_key` int(11) NOT NULL,
-  `lesson_id` int(11) DEFAULT NULL,
-  `class_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- ---------------------------------------------------------
 
 --
 -- Table structure for table `mcq_answer`
@@ -186,6 +244,20 @@ CREATE TABLE `mcq_answer` (
   `is_correct` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `mcq_answer`
+--
+
+INSERT INTO `mcq_answer` (`mcq_answer_id`, `question_id`, `answer_text`, `mcq_audio`, `is_correct`) VALUES
+(73, 3, '2', NULL, 0),
+(74, 3, '33', NULL, 0),
+(75, 3, '3', NULL, 0),
+(76, 3, '4', NULL, 0),
+(77, 5, 'xasxasx', '', 0),
+(78, 5, 'axascsdc', '', 1),
+(79, 5, 'vdscs', '', 0),
+(80, 5, 'dsvd', '../../src/option_audio/two.m4a', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -198,6 +270,17 @@ CREATE TABLE `question` (
   `question_audio` varchar(255) DEFAULT NULL,
   `lesson_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`question_id`, `question_text`, `question_audio`, `lesson_id`) VALUES
+(1, 'one = 2', 'src/question_audio/2.m4a', 1),
+(2, 'two = 2', 'src/question_audio/two.m4a', 1),
+(3, '1 + 1 = ?', NULL, 2),
+(4, '26 + 5 -  2 - 3 = 26', 'src/question_audio/26.m4a', 3),
+(5, 'ascsaxa', '../../src/question_audio/26 copy.m4a', 2);
 
 -- --------------------------------------------------------
 
@@ -220,8 +303,10 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_email`, `student_stat`, `student_fname`, `student_lname`, `gender`, `character_id`, `class_id`) VALUES
-('alicedaddy@gmail.com', 1, 'Alice', 'Johnson', 'Female', NULL, NULL),
-('bobmommy@gmail.com', 0, 'Bob', 'Brown', 'Male', NULL, NULL);
+('alicedaddy@gmail.com', 1, 'lee', 'Johnson', 'female', NULL, 22),
+('bobmommy@gmail.com', 0, 'Bob', 'Brown', 'Male', NULL, 22),
+('limtingwei2003@gmail.com', NULL, 'Lim', 'Ting Wei', 'male', 6, 26),
+('limtingwei200@gmail.com', NULL, 'Lim', 'Ting Wei', 'male', 5, 33);
 
 -- --------------------------------------------------------
 
@@ -243,7 +328,8 @@ CREATE TABLE `teacher` (
 INSERT INTO `teacher` (`teacher_email`, `password`, `teacher_name`, `teacher_number`) VALUES
 ('ikhwannabil77@gmail.com', '1234567890', 'nabil', '0129582395'),
 ('jane.smith@example.com', 'password456', 'Jane Smith', '+9876543210'),
-('john.doe@example.com', 'password123', 'John Doe', '+1234567890');
+('john.doe@example.com', 'password123', 'John Doe', '+1234567890'),
+('limtingwei2003@gmail.com', '456123789', 'admin', '0182982586');
 
 -- --------------------------------------------------------
 
@@ -256,6 +342,15 @@ CREATE TABLE `true_false_options` (
   `question_id` int(11) DEFAULT NULL,
   `is_true` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `true_false_options`
+--
+
+INSERT INTO `true_false_options` (`tfoption_id`, `question_id`, `is_true`) VALUES
+(1, 1, 0),
+(2, 2, 1),
+(3, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -272,8 +367,27 @@ CREATE TABLE `words` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `words`
+--
+
+INSERT INTO `words` (`word_id`, `word_text`, `is_encouragement`, `img_path`, `question_id`) VALUES
+(1, 'Keep up', 1, '', 1),
+(2, '', 0, '', 2),
+(3, 'Do not let what you cannot do interfere with what you can do.', 1, NULL, 3),
+(4, '', 0, '', 4),
+(5, 'axaxa', 1, '../../src/encouragement_source/main-qimg-6d93167b7062f53c6060361360ead4f8-pjlq.jpeg', 5);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `assigned`
+--
+ALTER TABLE `assigned`
+  ADD PRIMARY KEY (`assign_key`),
+  ADD KEY `lesson_id` (`lesson_id`),
+  ADD KEY `class_id` (`class_id`);
 
 --
 -- Indexes for table `character`
@@ -303,25 +417,12 @@ ALTER TABLE `completion`
   ADD KEY `student_email` (`student_email`);
 
 --
--- Indexes for table `dragdropmapping`
---
-ALTER TABLE `dragdropmapping`
-  ADD PRIMARY KEY (`mapping_id`),
-  ADD KEY `question_id` (`question_id`),
-  ADD KEY `draggable_item` (`draggable_item`),
-  ADD KEY `droppable_target` (`droppable_target`);
-
---
 -- Indexes for table `draggable_options`
 --
 ALTER TABLE `draggable_options`
-  ADD PRIMARY KEY (`drag_option_id`);
+  ADD PRIMARY KEY (`drag_option_id`),
+  ADD KEY `question_id` (`question_id`);
 
---
--- Indexes for table `droppable`
---
-ALTER TABLE `droppable`
-  ADD PRIMARY KEY (`droppable_id`);
 
 --
 -- Indexes for table `lesson`
@@ -329,14 +430,6 @@ ALTER TABLE `droppable`
 ALTER TABLE `lesson`
   ADD PRIMARY KEY (`lesson_id`),
   ADD KEY `teacher_email` (`teacher_email`);
-
---
--- Indexes for table `assigned`
---
-ALTER TABLE `assigned`
-  ADD PRIMARY KEY (`assign_key`),
-  ADD KEY `lesson_id` (`lesson_id`),
-  ADD KEY `class_id` (`class_id`);
 
 --
 -- Indexes for table `mcq_answer`
@@ -385,16 +478,22 @@ ALTER TABLE `words`
 --
 
 --
+-- AUTO_INCREMENT for table `assigned`
+--
+ALTER TABLE `assigned`
+  MODIFY `assign_key` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `character`
 --
 ALTER TABLE `character`
-  MODIFY `character_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `character_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `color`
@@ -403,61 +502,51 @@ ALTER TABLE `color`
   MODIFY `color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `dragdropmapping`
---
-ALTER TABLE `dragdropmapping`
-  MODIFY `mapping_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `draggable_options`
 --
 ALTER TABLE `draggable_options`
   MODIFY `drag_option_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `droppable`
---
-ALTER TABLE `droppable`
-  MODIFY `droppable_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT for table `assigned`
---
-ALTER TABLE `assigned`
-  MODIFY `assign_key` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mcq_answer`
 --
 ALTER TABLE `mcq_answer`
-  MODIFY `mcq_answer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mcq_answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `true_false_options`
 --
 ALTER TABLE `true_false_options`
-  MODIFY `tfoption_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tfoption_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `words`
 --
 ALTER TABLE `words`
-  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `assigned`
+--
+ALTER TABLE `assigned`
+  ADD CONSTRAINT `assigned_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`),
+  ADD CONSTRAINT `assigned_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
 
 --
 -- Constraints for table `class`
@@ -476,10 +565,8 @@ ALTER TABLE `completion`
 --
 -- Constraints for table `dragdropmapping`
 --
-ALTER TABLE `dragdropmapping`
-  ADD CONSTRAINT `dragdropmapping_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`),
-  ADD CONSTRAINT `dragdropmapping_ibfk_2` FOREIGN KEY (`draggable_item`) REFERENCES `draggable_options` (`drag_option_id`),
-  ADD CONSTRAINT `dragdropmapping_ibfk_3` FOREIGN KEY (`droppable_target`) REFERENCES `droppable` (`droppable_id`);
+ALTER TABLE `draggable_options`
+  ADD CONSTRAINT `draggable_options_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
 
 --
 -- Constraints for table `lesson`
@@ -487,12 +574,6 @@ ALTER TABLE `dragdropmapping`
 ALTER TABLE `lesson`
   ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`);
 
---
--- Constraint for table `assigned`
---
-ALTER TABLE `assigned`
-  ADD CONSTRAINT `assigned_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`),
-  ADD CONSTRAINT `assigned_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
 --
 -- Constraints for table `mcq_answer`
 --
