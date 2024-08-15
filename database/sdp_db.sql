@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 15, 2024 at 10:19 AM
+-- Generation Time: Aug 15, 2024 at 01:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,8 +40,7 @@ CREATE TABLE `assigned` (
 INSERT INTO `assigned` (`assign_key`, `lesson_id`, `class_id`) VALUES
 (6, 2, 33),
 (7, 3, 26),
-(8, 3, 27),
-(9, 2, 34);
+(8, 3, 27);
 
 -- --------------------------------------------------------
 
@@ -141,8 +140,7 @@ INSERT INTO `class` (`class_id`, `class_name`, `student_amount`, `teacher_email`
 (26, 'test5', 1, 'limtingwei2003@gmail.com', 6),
 (27, 'class 2', 0, 'limtingwei2003@gmail.com', 7),
 (31, 'class 2', 0, 'ikhwannabil77@gmail.com', 14),
-(33, 'tingting1346', 0, 'limtingwei2003@gmail.com', 8),
-(34, 'tingting1344', 0, 'limtingwei2003@gmail.com', 2);
+(33, 'tingting1346', 0, 'limtingwei2003@gmail.com', 8);
 
 -- --------------------------------------------------------
 
@@ -496,7 +494,7 @@ ALTER TABLE `words`
 -- AUTO_INCREMENT for table `assigned`
 --
 ALTER TABLE `assigned`
-  MODIFY `assign_key` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `assign_key` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `character`
@@ -508,7 +506,7 @@ ALTER TABLE `character`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `color`
@@ -560,15 +558,15 @@ ALTER TABLE `words`
 -- Constraints for table `assigned`
 --
 ALTER TABLE `assigned`
-  ADD CONSTRAINT `assigned_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`),
-  ADD CONSTRAINT `assigned_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`);
+  ADD CONSTRAINT `assigned_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `assigned_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`),
-  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`);
+  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`) ON DELETE CASCADE,
+  ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`color_id`) REFERENCES `color` (`color_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `completion`
@@ -581,44 +579,44 @@ ALTER TABLE `completion`
 -- Constraints for table `draggable_options`
 --
 ALTER TABLE `draggable_options`
-  ADD CONSTRAINT `draggable_options_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
+  ADD CONSTRAINT `draggable_options_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `lesson`
 --
 ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`);
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_email`) REFERENCES `teacher` (`teacher_email`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mcq_answer`
 --
 ALTER TABLE `mcq_answer`
-  ADD CONSTRAINT `mcq_answer_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
+  ADD CONSTRAINT `mcq_answer_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `question`
 --
 ALTER TABLE `question`
-  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`);
+  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
-  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`),
-  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`character_id`) REFERENCES `character` (`character_id`);
+  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`character_id`) REFERENCES `character` (`character_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `true_false_options`
 --
 ALTER TABLE `true_false_options`
-  ADD CONSTRAINT `true_false_options_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
+  ADD CONSTRAINT `true_false_options_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `words`
 --
 ALTER TABLE `words`
-  ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`);
+  ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
