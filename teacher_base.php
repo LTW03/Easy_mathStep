@@ -6,10 +6,10 @@ include('Teacher_loginValidate.php');
             <div class="header-container">
                   <a class="header-title">My Classes</a>           
 
-                  <div class="header-search">
+                  <!-- <div class="header-search">
                         <input type="search" placeholder="Search" class="header-input">
                         <i class="bx bx-search header-icon"></i>
-                  </div>
+                  </div> -->
 
                   <div class="headertoggle">
                         <i class="bx bx-menu" id="header-toggle"></i>
