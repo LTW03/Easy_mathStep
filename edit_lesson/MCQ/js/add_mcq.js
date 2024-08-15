@@ -122,34 +122,31 @@ function renumberQuestions() {
 function saveQuiz(event) {
     event.preventDefault(); // Prevent default form submission
 
-    const form = document.getElementById('questionForm');
-    
-    // Check if form is null
-    if (!form) {
-        console.error('Form element not found');
+    const quizForm = document.getElementById('questionForm');
+    const formData = new FormData(quizForm);
+
+    let valid = true;
+
+    for (let [key, value] of formData.entries()) {
+        if (key.includes('question') && !key.includes('Text') && !key.includes('Image') && !key.includes('Audio') && !value) {
+            valid = false;
+            break;
+        }
+    }
+
+    if (!valid) {
+        alert("All fields must be filled or marked as encouragement.");
         return;
     }
 
-    // Ensure the form element is an instance of HTMLFormElement
-    if (!(form instanceof HTMLFormElement)) {
-        console.error('The element with ID "questionForm" is not a form element');
+    const radios = document.querySelectorAll('input[type="radio"]');
+    let radioCheck = Array.from(radios).some(radio => radio.checked);
+
+    if (!radioCheck) {
+        alert("Please select at least one correct answer for each question.");
         return;
     }
-
-    const formData = new FormData(form); // Create FormData object
-
-    fetch('add_mcq_process.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(result => {
-        console.log(result);
-        // Handle result, maybe redirect or update UI
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    quizForm.submit();
 }
 
 document.addEventListener("DOMContentLoaded", function() {

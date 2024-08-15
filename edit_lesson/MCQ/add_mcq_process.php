@@ -27,6 +27,10 @@ function uploadFile($file, $target_dir) {
     }
 }
 
+function removeRelativePath($path) {
+    return str_replace('../../', '', $path);
+}
+
 $sql_question = "INSERT INTO question (question_text, question_audio, lesson_id) VALUES (?, ?, ?)";
 $stmt_question = $conn->prepare($sql_question) or die("Prepare failed: " . $conn->error);
 $stmt_question->bind_param("ssi", $questionText, $questionAudio, $lesson_id);
@@ -49,6 +53,7 @@ foreach ($_POST as $key => $value) {
         if ($questionAudio === null) {
             die("Failed to upload question audio for question $questionNumber");
         }
+        $questionAudio = removeRelativePath($questionAudio); // Remove relative path
 
         $stmt_question->execute() || die("Execute failed: " . $stmt_question->error);
         $question_id = $stmt_question->insert_id; 
@@ -61,6 +66,7 @@ foreach ($_POST as $key => $value) {
         if ($encouragementImage === null) {
             die("Failed to upload encouragement image for question $questionNumber");
         }
+        $encouragementImage = removeRelativePath($encouragementImage); // Remove relative path
 
         $isEncouragementKey = 'isEncouragement' . $questionNumber;
         $isEncouragement = isset($_POST[$isEncouragementKey]) ? 1 : 0; 
@@ -75,6 +81,8 @@ foreach ($_POST as $key => $value) {
             $optionAudio = isset($_FILES[$optionAudioKey]) ? uploadFile($_FILES[$optionAudioKey], "../../src/option_audio/") : '';
 
             if ($optionAudio !== null) {
+                $optionAudio = removeRelativePath($optionAudio); // Remove relative path
+
                 $isCorrect = (isset($_POST["correctAnswer${questionNumber}"]) && $_POST["correctAnswer${questionNumber}"] == "option${questionNumber}_$i") ? 1 : 0;
 
                 $stmt_option->execute() || die("Execute failed: " . $stmt_option->error);
@@ -84,11 +92,11 @@ foreach ($_POST as $key => $value) {
         }
     }
 }
-
+header("Location: ../../library_page.php");
 $stmt_question->close();
 $stmt_option->close();
 $stmt_encouragement->close();
 $conn->close();
-header("Location: ../../library_page.php");
+
 exit();
 ?>
