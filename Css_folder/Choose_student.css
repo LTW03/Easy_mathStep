@@ -116,7 +116,7 @@ img {
 }
 
 /* for PC and tab horizontal devices */
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1023px) {
     .namecard {
         width: 100%; 
     }
