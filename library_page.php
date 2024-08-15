@@ -124,17 +124,14 @@
             'MCQ' => [
                 'add' => "./edit_lesson/add_mcq_page.php?lesson_id=$lesson_id",
                 'update' => "./edit_lesson/update_mcq.php?lesson_id=$lesson_id",
-                'delete' => "./edit_lesson/delete_mcq.php?lesson_id=$lesson_id"
             ],
             'DragDrop' => [
                 'add' => "./edit_lesson/add_dragdrop_page.php?lesson_id=$lesson_id",
                 'update' => "./edit_lesson/update_dragdrop.php?lesson_id=$lesson_id",
-                'delete' => "./edit_lesson/delete_dragdrop.php?lesson_id=$lesson_id"
             ],
             'TF' => [
                 'add' => "./edit_lesson/add_TF_page.php?lesson_id=$lesson_id",
                 'update' => "./edit_lesson/update_TF.php?lesson_id=$lesson_id",
-                'delete' => "./edit_lesson/delete_TF.php?lesson_id=$lesson_id"
             ]
         ];
 
@@ -210,7 +207,7 @@
                     url = `./edit_lesson/${currentQuestionType}/add_${currentQuestionType.toLowerCase()}_page.php?lesson_id=${currentLessonId}`;
                     break;
                 case 'delete':
-                    url = `./edit_lesson/${currentQuestionType}/delete_${currentQuestionType.toLowerCase()}.php?lesson_id=${currentLessonId}`;
+                    url = `./Delete_Lesson.php/?lesson_id=${currentLessonId}`;
                     break;
                 case 'update':
                     url = `./edit_lesson/${currentQuestionType}/update_${currentQuestionType.toLowerCase()}.php?lesson_id=${currentLessonId}`;
