@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Commit transaction
         $conn->commit();
-        echo "<script>alert('Drag and drop questions updated successfully!');</script>";
+        echo "<script>alert('Drag and drop questions updated successfully!');   window.location.href = '../../library_page.php'</script>";
     } catch (Exception $e) {
         // Rollback transaction on error
         $conn->rollback();
