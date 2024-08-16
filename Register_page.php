@@ -22,7 +22,6 @@ session_start();
             <div class="register-button">
                 <p class="dont-have-acc">Already have an Account?</p>
                 <button class="register-btn" type="button" onclick="window.location.href=('./Login_page.php')">Login</button>
-                <script src="main.js"></script>
             </div>
         </div>
         
