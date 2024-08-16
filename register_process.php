@@ -28,6 +28,19 @@ if (isset($_POST['submit'])) {
         array_push($errors, 'Passwords are not matching.');
     }
 
+    if(empty($errors)){
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM teacher WHERE teacher_email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
+        $stmt->close();
+
+        if ($count > 0) {
+            array_push($errors, 'Email is already registered. Please use a different email.');
+        }
+    }
+
     if (count($errors) > 0) {
         // Redirect back to the register page with errors
         session_start();
