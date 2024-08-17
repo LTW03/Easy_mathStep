@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
           yesBtn.addEventListener("click", function() {
                 document.cookie = "user_email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                window.location.href = "landing_page.html";
+                window.location.href = "index.php";
                 document.body.removeChild(popup);
                 
           });
