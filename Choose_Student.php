@@ -23,12 +23,24 @@ $student = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./Css_folder/Choose_student.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
     <header>
         <img src="./src/logo.png" width="60" class="logo-icon">
         <span class="logo-title">EasyMathStep</span>
+
+        <div class="back_btn">
+            <a href="./Choose_classes.php">
+                <button class="backBtn_icon">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                back
+            </a>
+        </div>
     </header>
+    
     <div class="title">
         <h1 class="title-text">Choose Your Name</h1>
     </div>
@@ -46,7 +58,7 @@ $student = $conn->query($sql);
                 } elseif($question_type == 'DragDrop'){
                     $quizpath = 'drag_dropQuiz.php'; //Drag and Drop path
                 } else {
-                    echo "<script type = 'text/javascript'> alert('No class assigned yet'); document.location = 'Choose_Student.php' </script>";
+                    echo "<script type = 'text/javascript'> alert('No class assigned yet'); document.location = './Choose_classes.php' </script>";
                 }
                 
                 // Pass lesson_id and quizpath in the URL
