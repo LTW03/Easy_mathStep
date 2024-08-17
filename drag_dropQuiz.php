@@ -171,8 +171,7 @@ $conn->close();
             score: score,
             incorrectQuestions: incorrectQuestions
         }));
-}
-
+    }
 
     function fetchPopupData(allCorrect) {
         const currentQuestionId = document.getElementById('question-container').getAttribute('data-question-id');
@@ -187,13 +186,19 @@ $conn->close();
         .then(response => response.json())
         .then(data => {
             if (data.showPopup) {
-                displayPopup(data.popupText, data.popupImg);
+                setTimeout(() => {
+                    displayPopup(data.popupText, data.popupImg);
+                }, 500);
             } else if (allCorrect) {
-                alert('All answers are correct!');
-                fetchNextQuestion();
+                setTimeout(() => {
+                    alert('All answers are correct!');
+                    fetchNextQuestion();
+                }, 500);
             } else {
-                alert('Some answers are incorrect, try again!');
-                fetchNextQuestion();
+                setTimeout(() => {
+                    alert('Some answers are incorrect, try again!');
+                    fetchNextQuestion();
+                }, 500);
             }
         })
         .catch(error => console.error('Error:', error));
@@ -230,10 +235,6 @@ $conn->close();
         .catch(error => console.error('Error:', error));
     }
 
-    function calculateScore() {
-        return 0; 
-    }
-
     function finishGame() {
         const score = calculateScore();
         const incorrectQuestions = getIncorrectQuestions();
@@ -255,7 +256,6 @@ $conn->close();
             incorrectQuestions: incorrectQuestions
         }));
     }
-
 
     function calculateScore() {
         let score = 0;
