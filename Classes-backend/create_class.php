@@ -1,17 +1,5 @@
 <?php
-// Database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "sdp_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include('./database/connection.php');
 
 // Get form data
 $class_name = $_POST['class_name'];

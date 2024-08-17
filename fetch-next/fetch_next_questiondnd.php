@@ -1,17 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-// Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "sdp_db";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include('./database/connection.php');
 
 // Get the current question ID from the request
 $data = json_decode(file_get_contents("php://input"), true);
