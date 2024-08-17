@@ -24,7 +24,7 @@ function fetchNextQuestion() {
     falseButton.style.backgroundColor = ''; 
 
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "fetch-next/fetch_next_questiontf.php?question_id=" + currentQuestionId, true);
+    xhr.open("GET", "fetch-next/fetch_next_questiontf.php?question_id=" + currentQuestionId + "&lesson_id=" + lessonId, true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
@@ -65,7 +65,8 @@ function submitResults() {
     };
     xhr.send(JSON.stringify({
         score: score,
-        incorrectQuestions: incorrectQuestions
+        incorrectQuestions: incorrectQuestions,
+        lesson_id: lessonId
     }));
 }
 

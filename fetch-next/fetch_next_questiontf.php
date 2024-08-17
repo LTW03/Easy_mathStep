@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 }
 
 $current_question_id = $_GET['question_id'];
-$lesson_id = 1;
+$lesson_id = $_GET['lesson_id'];
 
 $response = [];
 

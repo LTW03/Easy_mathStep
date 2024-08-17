@@ -11,12 +11,11 @@
 <?php
     include('database/connection.php');
     $lesson_id = $_GET['lesson_id']; 
-$question_text = "No questions available";
-$is_true = null;
-$question_id = 0;
-$question_audio = ""; 
+    $question_text = "No questions available";
+    $is_true = null;
+    $question_id = 0;
+    $question_audio = ""; 
 
-if ($lesson_id == 1) {
     $sql = "SELECT q.question_id, q.question_text, tfo.is_true, q.question_audio
             FROM question q 
             JOIN true_false_options tfo ON q.question_id = tfo.question_id 
@@ -32,7 +31,7 @@ if ($lesson_id == 1) {
         $question_id = $row["question_id"];
         $question_audio = $row["question_audio"];
     }
-}
+
 
 $conn->close();
 ?>
@@ -71,6 +70,7 @@ $conn->close();
 <script>
     var currentQuestionId = <?php echo $question_id; ?>;
     var correctAnswer = <?php echo $is_true ? 'true' : 'false'; ?>;
+    var lessonId = <?php echo json_encode($lesson_id); ?>;
     var score = 0;
     var incorrectQuestions = [];
 
