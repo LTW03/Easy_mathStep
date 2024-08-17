@@ -53,7 +53,7 @@ if ($studentEmail && $lessonId) {
 
     <div class='logoContainer'>
         <img class='logo' src='./src/logo.png'>
-        <a class='logoLink' href=''>EasyMathStep</a>
+        <a class='logoLink' href='./index.php'>EasyMathStep</a>
     </div>
     
     <span class="carouselText">Choose Your Class</span>
