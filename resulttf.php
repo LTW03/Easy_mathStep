@@ -21,7 +21,7 @@ session_destroy();
         <p>You got <?php echo $score; ?> correct out of <?php echo $score + count($incorrectQuestions); ?> questions.</p>
         <ul>
             <?php foreach ($incorrectQuestions as $question): ?>
-                <li>Question <?php echo $question['question_id']; ?>: Correct Answer was <?php echo $question['correct_answer'] ? 'True' : 'False'; ?></li>
+                <li>Question : Correct Answer was <?php echo $question['correct_answer'] ? 'True' : 'False'; ?></li>
             <?php endforeach; ?>
         </ul>
         <button onclick="clearCookiesAndRedirect()">Go to Home</button>
