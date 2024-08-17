@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
             popup.style.display = "flex";
 
             yesBtn.addEventListener("click", function() {
-                window.location.href = "library_page.php"; // Change to the page you want to redirect to
+                window.location.href = "../../library_page.php"; // Change to the page you want to redirect to
                 document.body.removeChild(popup);
             });
 
