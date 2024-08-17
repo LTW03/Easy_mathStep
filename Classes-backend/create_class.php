@@ -1,5 +1,8 @@
 <?php
-include('./database/connection.php');
+include('../database/connection.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Get form data
 $class_name = $_POST['class_name'];
