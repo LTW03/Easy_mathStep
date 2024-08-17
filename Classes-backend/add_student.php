@@ -67,9 +67,8 @@ if ($email_count > 0) {
     exit;
 }
 
-// Prepare and bind the insert statement
-$stmt = $conn->prepare("INSERT INTO student (student_fname, student_lname, gender, student_email, character_id, class_id) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssii", $first_name, $last_name, $gender, $email, $character_id, $class_id);
+$stmt = $conn->prepare("INSERT INTO student (student_fname, student_lname, gender, student_email, character_id, class_id, student_stat) VALUES (?, ?, ?, ?, ?, ?, 0)");
+$stmt->bind_param("ssssii", $first_name, $last_name, $gender, $email, $character_id, $class_id); 
 
 // Update the student amount in the class table
 $update_stmt = $conn->prepare("UPDATE class SET student_amount = student_amount + 1 WHERE class_id = ?");
