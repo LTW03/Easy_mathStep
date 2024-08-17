@@ -26,7 +26,12 @@ session_destroy();
                 </li>
             <?php endforeach; ?>
         </ul>
-        <button onclick="location.href='Choose_classes.php'">Go to Home</button>
+        <button onclick="clearCookiesAndRedirect()">Go to Home</button>
     </div>
+    <script>
+        function clearCookiesAndRedirect() {
+            window.location.href = 'update_student_stat.php';
+        }
+    </script>
 </body>
 </html>

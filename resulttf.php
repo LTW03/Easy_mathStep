@@ -24,7 +24,12 @@ session_destroy();
                 <li>Question <?php echo $question['question_id']; ?>: Correct Answer was <?php echo $question['correct_answer'] ? 'True' : 'False'; ?></li>
             <?php endforeach; ?>
         </ul>
-        <button onclick="location.href='Choose_classes.php'">Go to Home</button>
+        <button onclick="clearCookiesAndRedirect()">Go to Home</button>
     </div>
+    <script>
+        function clearCookiesAndRedirect() {
+            window.location.href = 'update_student_stat.php';
+        }
+    </script>
 </body>
 </html>
