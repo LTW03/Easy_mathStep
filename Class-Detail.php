@@ -139,9 +139,8 @@ include('teacher_base.php');
                               <th>First Name</th>
                               <th>Last Name</th>
                               <th>Gender</th>
-                              <th>Status</th>
                               <th>Student Email</th>
-                              <th></th>
+                              <th>Status</th>
                               
                         </tr>
                   </thead>
@@ -160,8 +159,9 @@ include('teacher_base.php');
                               echo '<td>'. htmlspecialchars($row["student_fname"]). '</td>';
                               echo '<td>'. htmlspecialchars($row["student_lname"]). '</td>';
                               echo '<td>'. htmlspecialchars($row["gender"]). '</td>';
-                              echo '<td>'. htmlspecialchars($status). '</td>';
-                              echo '<td>'. htmlspecialchars($row["student_email"]). '</td>'; ?>
+                              echo '<td>'. htmlspecialchars($row["student_email"]). '</td>'; 
+                              echo '<td>'. htmlspecialchars($status). '</td>';?>
+                              
                                     <td><i class="bx bxs-trash-alt new-std-icon" id="delete-student"></i><i class="bx bxs-edit new-std-icon" id="edit-student"></i></td>
                         <?php echo '</tr>';
                         }
