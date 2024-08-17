@@ -16,17 +16,18 @@ if ($conn->connect_error) {
 // Get the current question ID from the request
 $data = json_decode(file_get_contents("php://input"), true);
 $currentQuestionId = $data['currentQuestionId'];
+$lesson_id = $data['lessonId'];
 
 // Fetch the next question for lesson_id 4 (Drag and Drop)
 $question_sql = "SELECT q.question_id, q.question_text, q.question_audio  
                  FROM question q 
-                 WHERE q.lesson_id = 4 
+                 WHERE q.lesson_id = ? 
                  AND q.question_id > ? 
                  ORDER BY q.question_id 
                  LIMIT 1";
 
 $stmt = $conn->prepare($question_sql);
-$stmt->bind_param("i", $currentQuestionId);
+$stmt->bind_param("ii", $lesson_id, $currentQuestionId);
 $stmt->execute();
 $question_result = $stmt->get_result();
 

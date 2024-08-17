@@ -96,6 +96,7 @@ $conn->close();
     
 <!-- function javasript -->
 <script>
+    var lesson_id = <?php echo json_encode($lesson_id); ?>;
     let incorrectQuestions = [];
     let score = 0;
 
@@ -216,7 +217,7 @@ $conn->close();
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ currentQuestionId: currentQuestionId })
+            body: JSON.stringify({ currentQuestionId: currentQuestionId, lessonId: lesson_id})
         })
         .then(response => response.json())
         .then(data => {
@@ -234,11 +235,11 @@ $conn->close();
     }
 
     function finishGame() {
-    const score = calculateScore();
-    const incorrectQuestions = getIncorrectQuestions();
+        const score = calculateScore();
+        const incorrectQuestions = getIncorrectQuestions();
 
-    submitResults(score, incorrectQuestions);
-}
+        submitResults(score, incorrectQuestions);
+    }
 
     function submitResults() {
         var xhr = new XMLHttpRequest();
