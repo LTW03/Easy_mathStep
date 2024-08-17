@@ -15,7 +15,7 @@
 
     $question_sql = "SELECT q.question_text, q.question_id, q.question_audio 
                      FROM question q 
-                     WHERE q.lesson_id = 4 
+                     WHERE q.lesson_id = $lesson_id
                      LIMIT 1"; 
 
     $question_result = $conn->query($question_sql);
@@ -53,7 +53,7 @@ $conn->close();
 
 <!-- Drag and Drop Design -->
 <div class="background">
-<img src="src/games_images/shapes-top.png" alt="Top Shape" class="shape shape-top">
+        <img src="src/games_images/shapes-top.png" alt="Top Shape" class="shape shape-top">
         <img src="src/games_images/blue-shape-b - Copy (2).png" alt="Blue Shape" class="shape shape-bottom">
         <img src="src/games_images/adaptive_01 - Copy.png" alt="Left Shape" class="shape shape-left">
         <img src="src/games_images/right-image - Copy (2).webp" alt="Right Shape" class="shape shape-right">
