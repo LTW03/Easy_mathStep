@@ -27,6 +27,7 @@ function fetchNextQuestion() {
             if (response.question_text !== "No more questions") {
                 document.querySelector('.question h1').textContent = response.question_text;
                 currentQuestionId = response.question_id;
+
                 correctAnswer = response.options.find(option => option.is_correct).answer_text;
 
                 // Update answer buttons
@@ -70,7 +71,7 @@ function fetchNextQuestion() {
             }
         }
     };
-    xhr.send(JSON.stringify({ currentQuestionId: currentQuestionId }));
+    xhr.send(JSON.stringify({currentQuestionId: currentQuestionId, lessonId: lesson_id}));
 }
 
 

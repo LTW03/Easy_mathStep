@@ -97,6 +97,7 @@
 <!-- JavaScript function -->
     <script>
         var currentQuestionId = <?php echo $question_id; ?>;
+        var lesson_id = <?php echo json_encode($lesson_id); ?>;
         var correctAnswer = "<?php echo htmlspecialchars($correct_option); ?>";
         var score = 0;
         var incorrectQuestions = [];
