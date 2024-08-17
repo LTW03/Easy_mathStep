@@ -44,7 +44,7 @@ $student = $conn->query($sql);
                 if($question_type == "MCQ"){
                     $quizpath = 'MCQ_quiz.php'; //MCQ page path
                 } elseif($question_type == 'TF'){
-                    $quizpath = 'tf'; //True/False page path
+                    $quizpath = 'TrueFalse_quiz.php'; //True/False page path
                 } elseif($question_type == 'DragDrop'){
                     $quizpath = 'drag_dropQuiz.php'; //Drag and Drop path
                 }else{
