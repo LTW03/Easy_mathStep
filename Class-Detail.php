@@ -139,6 +139,7 @@ include('teacher_base.php');
                               <th>First Name</th>
                               <th>Last Name</th>
                               <th>Gender</th>
+                              <th>Status</th>
                               <th>Student Email</th>
                               <th></th>
                               
@@ -146,16 +147,20 @@ include('teacher_base.php');
                   </thead>
                   <tbody id="studentTableBody">
                   <?php
-                  $stmt = $conn->prepare("SELECT student.student_email, student.student_fname, student.student_lname, student.gender FROM student INNER JOIN class ON student.class_id = class.class_id WHERE class.class_id = ?");
+                  $stmt = $conn->prepare("SELECT student.student_email, student.student_fname, student.student_lname, student.gender, student.student_stat FROM student INNER JOIN class ON student.class_id = class.class_id WHERE class.class_id = ?");
                   $stmt->bind_param("s", $class_id); // Bind the class_id parameter
                   $stmt->execute();
                   $students = $stmt->get_result();
                   if ($students->num_rows > 0) {
                         while($row = $students->fetch_assoc()) {
+                              $student_stat = $row['student_stat'];
+                              $student_stat = $row['student_stat'];
+                              $status = ($student_stat == 1) ? 'online' : 'offline';
                               echo '<tr>';
                               echo '<td>'. htmlspecialchars($row["student_fname"]). '</td>';
                               echo '<td>'. htmlspecialchars($row["student_lname"]). '</td>';
                               echo '<td>'. htmlspecialchars($row["gender"]). '</td>';
+                              echo '<td>'. htmlspecialchars($status). '</td>';
                               echo '<td>'. htmlspecialchars($row["student_email"]). '</td>'; ?>
                                     <td><i class="bx bxs-trash-alt new-std-icon" id="delete-student"></i><i class="bx bxs-edit new-std-icon" id="edit-student"></i></td>
                         <?php echo '</tr>';
