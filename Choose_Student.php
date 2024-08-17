@@ -46,7 +46,7 @@ $student = $conn->query($sql);
                 } elseif($question_type == 'TF'){
                     $quizpath = 'tf'; //True/False page path
                 } elseif($question_type == 'DragDrop'){
-                    $quizpath = 'n'; //Drag and Drop path
+                    $quizpath = 'drag_dropQuiz.php'; //Drag and Drop path
                 }else{
                     echo "<script type = 'text/javascript'> alert('No class assigned yet'); document.location = 'Choose_Student.php' </script>";
                 }
