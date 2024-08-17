@@ -1,3 +1,34 @@
+<?php
+$studentEmail = $_COOKIE['student_email'] ?? '';
+$lessonId = $_COOKIE['lesson_id'] ?? '';
+
+// If cookies are set, determine the quiz type and redirect
+if ($studentEmail && $lessonId) {
+    include('database/connection.php');
+
+    // Fetch the lesson details based on lesson_id
+    $sql = "SELECT question_type FROM lesson WHERE lesson_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $lessonId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $lesson = $result->fetch_assoc();
+
+    $questionType = $lesson['question_type'] ?? '';
+
+    if ($questionType === 'MCQ') {
+        header("Location: MCQ_quiz.php?class_id=" . $_GET['class_id'] . "&lesson_id=" . $lessonId);
+    } elseif ($questionType === 'TF') {
+        header("Location: TrueFalse_quiz.php?class_id=" . $_GET['class_id'] . "&lesson_id=" . $lessonId);
+    } elseif ($questionType === 'DragDrop') {
+        header("Location: drag_dropQuiz.php?class_id=" . $_GET['class_id'] . "&lesson_id=" . $lessonId);
+    } else {
+        echo "<script type='text/javascript'>alert('No valid quiz type found.');window.location='Choose_Student.php';</script>";
+    }
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
