@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-include('./database/connection.php');
+include('../database/connection.php');
 
 // Get the current question ID from the request
 $data = json_decode(file_get_contents("php://input"), true);
