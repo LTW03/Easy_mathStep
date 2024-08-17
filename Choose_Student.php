@@ -2,9 +2,10 @@
 include('database/connection.php');
 
 $class_id = $_GET['class_id'];
+
 // Fetch class data with their associated color
 $sql = "SELECT s.student_email, s.student_fname, s.student_lname, c.character_path,
-            l.lesson_name, l.question_type
+            l.lesson_name, l.question_type, l.lesson_id  -- Explicitly select lesson_id
             FROM student s
             LEFT JOIN `character` c ON s.character_id = c.character_id
             LEFT JOIN class cl ON s.class_id = cl.class_id
@@ -25,8 +26,8 @@ $student = $conn->query($sql);
 </head>
 <body>
     <header>
-      <img src="./src/logo.png" width="60" class="logo-icon">
-      <span class="logo-title">EasyMathStep</span>
+        <img src="./src/logo.png" width="60" class="logo-icon">
+        <span class="logo-title">EasyMathStep</span>
     </header>
     <div class="title">
         <h1 class="title-text">Choose Your Name</h1>
@@ -35,16 +36,23 @@ $student = $conn->query($sql);
         <?php
         if ($student->num_rows > 0) {
             $quizpath = '';
+            
             while($row = $student->fetch_assoc()) {
+                $lesson_id = $row['lesson_id']; // Retrieve lesson_id
                 $question_type = $row['question_type'];
+                
                 if($question_type == "MCQ"){
-                    $quizpath = 'mcq'; //MCQ page path
+                    $quizpath = 'MCQ_quiz.php'; //MCQ page path
                 } elseif($question_type == 'TF'){
                     $quizpath = 'tf'; //True/False page path
-                } else {
+                } elseif($question_type == 'DragDrop'){
                     $quizpath = 'n'; //Drag and Drop path
+                }else{
+                    echo "<script type = 'text/javascript'> alert('No class assigned yet'); document.location = 'Choose_Student.php' </script>";
                 }
-                echo '<a href="' . $quizpath . '?class_id=' . $class_id . '&student_id=' . urlencode($row["student_email"]) . '" class="namecard-link">';
+                
+                // Pass lesson_id in the URL
+                echo '<a href="' . $quizpath . '?class_id=' . $class_id . '&student_id=' . urlencode($row["student_email"]) . '&lesson_id=' . $lesson_id . '" class="namecard-link">';
                 echo    '<div class="namecard">';
                 echo        '<img src="' . $row["character_path"] . '" alt="animal" width="75">';
                 echo        '<div class="std-name">' . htmlspecialchars($row["student_fname"]) . ' ' . htmlspecialchars($row["student_lname"]) . '</div>';
