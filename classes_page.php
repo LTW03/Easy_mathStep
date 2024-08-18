@@ -84,7 +84,7 @@
                 echo        '<div class="assign-lesson" data-class-id-lesson="' . $class_id_fetch . '"><i class="bx bxs-book-add delete-edit-cls"><span class="icon-title"> Assign lesson</span></i></div>';
                 echo    '</div>';
                 echo    '<a>' . htmlspecialchars($row["student_amount"]) . ' Student(s)</a></br>';
-                echo    '<a> Assigned Class :' . htmlspecialchars($assigned_lessons) . '</a>';
+                echo    '<a> Assigned Lesson :' . htmlspecialchars($assigned_lessons) . '</a>';
                 echo '</div>';
             }
         } else {
