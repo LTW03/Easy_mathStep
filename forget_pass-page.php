@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
+    <title>Forgot Password | E.M.S</title>
     <link rel="stylesheet" href="./Css_folder/forget_pass.css">
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>

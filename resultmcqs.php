@@ -12,7 +12,7 @@ session_destroy();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Results</title>
+    <title>Quiz Results | E.M.S</title>
     <link rel="stylesheet" href="Css_folder/games.css"> 
 </head>
 <body>

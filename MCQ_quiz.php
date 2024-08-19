@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQs Game</title>
+    <title>MCQs Game | E.M.S</title>
     <link rel="stylesheet" href="Css_folder/games.css">
 </head>
 <body>
