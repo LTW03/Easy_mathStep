@@ -85,6 +85,6 @@ $stmt_question->close();
 $stmt_tf_option->close();
 $stmt_encouragement->close();
 $conn->close();
-// header("Location: ../../library_page.php");
+header("Location: ../../library_page.php");
 exit();
 ?>
