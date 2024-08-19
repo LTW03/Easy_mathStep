@@ -30,7 +30,7 @@
                     <i class='bx bxl-gmail'></i>
                 </div>
                 <div class="input-box">
-                    <input name="user_password" type="password" placeholder="Password" required>
+                    <input id="password" name="user_password" type="password" placeholder="Password" required>
                     <i id="togglePassword" class='bx bx-show'></i>
                 </div>
                 <div class="remember-me-forgot">
