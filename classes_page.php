@@ -64,7 +64,7 @@
 
     $class = $conn->query($sql);
     $teacher_email = 'limtingwei2003@gmail.com';
-    $sql_lessons = "SELECT lesson_id, lesson_name, question_type FROM lesson WHERE teacher_email = '$teacher_email'";
+    $sql_lessons = "SELECT lesson_id, lesson_name, question_type FROM lesson WHERE teacher_email = '$user_email'";
     $lessons = $conn->query($sql_lessons);
     ?>
           <!-- class card content -->
