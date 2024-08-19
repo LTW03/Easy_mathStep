@@ -34,7 +34,7 @@
                     <i id="togglePassword" class='bx bx-show'></i>
                 </div>
                 <div class="remember-me-forgot">
-                    <label> <input type="checkbox">Remember Me</label>
+                    
                     <a href="forget_pass-page.php">
                         Forgot password?
                     </a>
