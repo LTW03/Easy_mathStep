@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drag and Drop Game</title>
-    <link rel="stylesheet" href="./Css_folder/games.css">
+    <link rel="stylesheet" href="./Css_folder/gamednd.css">
 </head>
 <body>
 
@@ -53,14 +53,14 @@ $conn->close();
 
 <!-- Drag and Drop Design -->
 <div class="background">
-        <img src="src/games_images/shapes-top.png" alt="Top Shape" class="shape shape-top">
-        <img src="src/games_images/blue-shape-b - Copy (2).png" alt="Blue Shape" class="shape shape-bottom">
+        <img src="src/games_images/shapes-top.png" alt="Top Shape" class="shape shape-topdnd">
+        <img src="src/games_images/blue-shape-b - Copy (2).png" alt="Blue Shape" class="shape shape-bottomdnd">
         <img src="src/games_images/adaptive_01 - Copy.png" alt="Left Shape" class="shape shape-left">
-        <img src="src/games_images/right-image - Copy (2).webp" alt="Right Shape" class="shape shape-right">
+        <img src="src/games_images/right-image - Copy (2).webp" alt="Right Shape" class="shape shape-rightdnd">
 </div>
 
 <div class="container_MCQs">
-    <div class="game">
+    <div class="game-dnd">
         <div class="question" id="question-container" data-question-id="<?php echo $question_id; ?>">
             <h1 class="drop" id="question-text">
                 <?php
@@ -72,7 +72,7 @@ $conn->close();
     </div>
 </div>
 
-<div class="buttons_MCQs" id="options-container">
+<div class="buttons_dnd" id="options-container">
     <?php
     $colors = ["red", "yellow", "blue", "purple", "green", "orange"];
     foreach ($options as $index => $option) {
@@ -81,9 +81,11 @@ $conn->close();
     ?>
 </div>
 
-<button class="btn-class-name" onclick="checkAnswers()">
-  <span class="back"></span>
-  <span class="front">Check</span>
+<button class="button" onclick="checkAnswers()">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+    </svg>
+    <div class="text">Next</div>
 </button>
 
 <div id="popup" class="popup_game">
@@ -93,7 +95,7 @@ $conn->close();
         <button onclick="closePopup()">Close</button>
     </div>
 </div>
-    
+
 <!-- function javasript -->
 <script>
     var lesson_id = <?php echo json_encode($lesson_id); ?>;
@@ -101,7 +103,7 @@ $conn->close();
     let score = 0;
 
     document.addEventListener('DOMContentLoaded', () => {
-        const buttons = document.querySelectorAll('.buttons_MCQs button');
+        const buttons = document.querySelectorAll('.buttons_dnd button');
         const dropzones = document.querySelectorAll('.dropzone');
 
         buttons.forEach(button => {
