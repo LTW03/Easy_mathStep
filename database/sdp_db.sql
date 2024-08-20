@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 15, 2024 at 01:20 PM
+-- Generation Time: Aug 20, 2024 at 01:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `sdp_db`
 --
+CREATE DATABASE IF NOT EXISTS `sdp_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `sdp_db`;
 
 -- --------------------------------------------------------
 
@@ -38,9 +40,10 @@ CREATE TABLE `assigned` (
 --
 
 INSERT INTO `assigned` (`assign_key`, `lesson_id`, `class_id`) VALUES
-(6, 2, 33),
-(7, 3, 26),
-(8, 3, 27);
+(7, 7, 26),
+(8, 3, 27),
+(12, 4, 36),
+(13, 8, 33);
 
 -- --------------------------------------------------------
 
@@ -134,13 +137,15 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`class_id`, `class_name`, `student_amount`, `teacher_email`, `color_id`) VALUES
-(2, 'tingting1345', 30, 'jane.smith@example.com', 1),
-(22, 'chinchin4', 10, 'ikhwannabil77@gmail.com', 7),
-(23, 'tingting1313', 1, 'ikhwannabil77@gmail.com', 1),
-(26, 'test5', 1, 'limtingwei2003@gmail.com', 6),
-(27, 'class 2', 0, 'limtingwei2003@gmail.com', 7),
+(22, 'Class A ', 10, 'ikhwannabil77@gmail.com', 7),
+(23, 'Class B', 1, 'ikhwannabil77@gmail.com', 1),
+(26, '1A', 2, 'limtingwei2003@gmail.com', 6),
+(27, '1B', 0, 'limtingwei2003@gmail.com', 7),
 (31, 'class 2', 0, 'ikhwannabil77@gmail.com', 14),
-(33, 'tingting1346', 0, 'limtingwei2003@gmail.com', 8);
+(33, '1D', 1, 'limtingwei2003@gmail.com', 8),
+(36, '2J', 3, 'limtingwei2003@gmail.com', 2),
+(38, 'abc', 1, 'tester@gmail.com', 2),
+(39, 'dsf', 0, 'limtingwei2003@gmail.com', 10);
 
 -- --------------------------------------------------------
 
@@ -214,7 +219,14 @@ INSERT INTO `draggable_options` (`drag_option_id`, `question_id`, `drag_option_a
 (4, 7, NULL, 'USA', 0, 0),
 (5, 7, NULL, 'Paris', 1, 1),
 (6, 7, NULL, 'KLCC', 0, 0),
-(7, 7, NULL, 'Eiffel Tower', 1, 2);
+(7, 7, NULL, 'Eiffel Tower', 1, 2),
+(8, 9, NULL, '-', 1, 1),
+(9, 9, NULL, '+', 0, 0),
+(10, 9, NULL, '*', 0, 0),
+(11, 10, NULL, '//', 0, 0),
+(12, 10, NULL, '*', 1, 1),
+(13, 10, NULL, '-', 0, 0),
+(14, 10, NULL, '+', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -235,10 +247,13 @@ CREATE TABLE `lesson` (
 --
 
 INSERT INTO `lesson` (`lesson_id`, `lesson_name`, `teacher_email`, `question_type`, `date_changes`) VALUES
-(1, 'TrueFalseQuiz_Class1', 'limtingwei2003@gmail.com', 'TF', '2024-08-05 11:43:42'),
-(2, 'MCQquiz_Class2', 'limtingwei2003@gmail.com', 'MCQ', '2024-08-10 11:25:59'),
-(3, 'testing', 'limtingwei2003@gmail.com', 'MCQ', '2024-08-15 16:18:08'),
-(4, 'drag and drop question', 'limtingwei2003@gmail.com', 'DragDrop', '2024-08-15 16:17:41');
+(1, 'number in text', 'limtingwei2003@gmail.com', 'TF', '2024-08-18 17:49:49'),
+(3, 'calculation', 'limtingwei2003@gmail.com', 'TF', '2024-08-18 17:50:18'),
+(4, 'Drag quiz', 'limtingwei2003@gmail.com', 'DragDrop', '2024-08-18 17:54:00'),
+(5, 'Comparison math', 'limtingwei2003@gmail.com', 'DragDrop', '2024-08-18 17:54:27'),
+(7, 'MCQ quiz', 'limtingwei2003@gmail.com', 'MCQ', '2024-08-18 17:46:22'),
+(8, 'Counting and Basic Addition', 'limtingwei2003@gmail.com', 'TF', '2024-08-18 17:52:40'),
+(9, 'abc', 'tester@gmail.com', 'MCQ', '2024-08-19 13:20:06');
 
 -- --------------------------------------------------------
 
@@ -259,14 +274,18 @@ CREATE TABLE `mcq_answer` (
 --
 
 INSERT INTO `mcq_answer` (`mcq_answer_id`, `question_id`, `answer_text`, `mcq_audio`, `is_correct`) VALUES
-(73, 3, '2', NULL, 0),
-(74, 3, '33', NULL, 0),
-(75, 3, '3', NULL, 0),
-(76, 3, '4', NULL, 0),
-(77, 5, 'xasxasx', '', 0),
-(78, 5, 'axascsdc', '', 1),
-(79, 5, 'vdscs', '', 0),
-(80, 5, 'dsvd', '../../src/option_audio/two.m4a', 0);
+(81, 13, '2', '', 0),
+(82, 13, '3', '', 1),
+(83, 13, '1', '', 0),
+(84, 13, '10', '', 0),
+(85, 14, '8', '', 1),
+(86, 14, '1', '', 0),
+(87, 14, '2', '', 0),
+(88, 14, '5', '', 0),
+(89, 17, '2', '', 1),
+(90, 17, '3', '', 0),
+(91, 17, '4', '', 0),
+(92, 17, '5', '', 0);
 
 -- --------------------------------------------------------
 
@@ -286,13 +305,19 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`question_id`, `question_text`, `question_audio`, `lesson_id`) VALUES
-(1, 'one = 2', 'src/question_audio/2.m4a', 1),
-(2, 'two = 2', 'src/question_audio/two.m4a', 1),
-(3, '1 + 1 = ?', NULL, 2),
+(1, 'one = 2', 'src/question_audio/26 copy.m4a', 1),
+(2, 'two = 2', NULL, 1),
 (4, '26 + 5 -  2 - 3 = 26', 'src/question_audio/26.m4a', 3),
-(5, 'ascsaxa', '../../src/question_audio/26 copy.m4a', 2),
-(6, '[BLANK1]wrote The Great Gatsby. The story is set in[BLANK2].', '', 4),
-(7, 'The capital of France is[BLANK1], and its famous tower is the[BLANK2].', '', 4);
+(6, '[BLANK1]wrote The Great Gatsby. The story is set in[BLANK2]. ', '', 4),
+(7, 'The capital of France is[BLANK1], and its famous tower is the[BLANK2].', '', 4),
+(8, 'one = 50', 'src/question_audio/26.m4a', 1),
+(9, '10[BLANK1]5 = 5', '', 5),
+(10, '7[BLANK1]5 = 35 = 30[BLANK2]5', './src/question_audio/26 copy.m4a', 5),
+(13, 'Counting: How Many Are There? 🍎🍎🍎', '', 7),
+(14, 'How many fruit are there?\n🍓🍓🍓🍓🍓🍌🍌🍊', '', 7),
+(15, 'There are 3 apples, and if you eat 1, you will have 2 apples left.', '', 8),
+(16, 'If you have 5 oranges and someone gives you 2 more, you will have 10 oranges.\n', '', 8),
+(17, '1+1', '', 9);
 
 -- --------------------------------------------------------
 
@@ -315,10 +340,15 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_email`, `student_stat`, `student_fname`, `student_lname`, `gender`, `character_id`, `class_id`) VALUES
-('alicedaddy@gmail.com', 1, 'lee', 'Johnson', 'female', 8, 22),
+('1234567890@werty', 0, 'Lee', 'Soon Chuan', 'female', 45, 36),
+('alicedaddy@gmail.com', 0, 'lee', 'Johnson', 'female', 8, 22),
+('amyparents@gmail.com', 0, 'amy', 'ang', 'female', 15, 36),
+('asxasxas@haha.com', 0, 'ascasc', 'saxas', 'male', 48, 26),
 ('bobmommy@gmail.com', 0, 'Bob', 'Brown', 'Male', 16, 22),
-('limtingwei2003@gmail.com', NULL, 'Lim', 'Ting Wei', 'male', 6, 26),
-('limtingwei200@gmail.com', NULL, 'Lim', 'Ting Wei', 'male', 5, 33);
+('chongparent@gmail.com', 0, 'chong', 'Lim', 'male', 55, 36),
+('limtingwei1999@gmail.com', 0, 'Lim', 'Ting Wei', 'male', 1, 38),
+('limtingwei2003@gmail.com', 0, 'Lim', 'Ting Wei', 'male', 6, 26),
+('limtingwei23@gmail.com', 0, 'Lim', 'Ting Wei', 'male', 2, 33);
 
 -- --------------------------------------------------------
 
@@ -339,9 +369,9 @@ CREATE TABLE `teacher` (
 
 INSERT INTO `teacher` (`teacher_email`, `password`, `teacher_name`, `teacher_number`) VALUES
 ('ikhwannabil77@gmail.com', '1234567890', 'nabil', '0129582395'),
-('jane.smith@example.com', 'password456', 'Jane Smith', '+9876543210'),
 ('john.doe@example.com', 'password123', 'John Doe', '+1234567890'),
-('limtingwei2003@gmail.com', '456123789', 'admin', '0182982586');
+('limtingwei2003@gmail.com', '456123789', 'admin', '0182982586'),
+('tester@gmail.com', '12345678', 'tester', '0182982586');
 
 -- --------------------------------------------------------
 
@@ -360,9 +390,12 @@ CREATE TABLE `true_false_options` (
 --
 
 INSERT INTO `true_false_options` (`tfoption_id`, `question_id`, `is_true`) VALUES
-(1, 1, 0),
-(2, 2, 1),
-(3, 4, 1);
+(1, 1, 1),
+(2, 2, 0),
+(3, 4, 1),
+(4, 8, 1),
+(7, 15, 1),
+(8, 16, 0);
 
 -- --------------------------------------------------------
 
@@ -383,13 +416,19 @@ CREATE TABLE `words` (
 --
 
 INSERT INTO `words` (`word_id`, `word_text`, `is_encouragement`, `img_path`, `question_id`) VALUES
-(1, 'Keep up', 1, '', 1),
-(2, '', 0, '', 2),
-(3, 'Do not let what you cannot do interfere with what you can do.', 1, NULL, 3),
+(1, 'Keep it up', 1, NULL, 1),
+(2, '', 0, NULL, 2),
 (4, '', 0, '', 4),
-(5, 'axaxa', 1, '../../src/encouragement_source/main-qimg-6d93167b7062f53c6060361360ead4f8-pjlq.jpeg', 5),
 (6, 'keep on going', 1, '', 6),
-(7, '', 0, '', 7);
+(7, '', 0, '', 7),
+(8, '', 1, NULL, 8),
+(9, 'gambateh', 1, './src/encouragement_source/d.jpg', 9),
+(10, '', 0, '', 10),
+(13, '', 0, '', 13),
+(14, 'xsa', 0, '', 14),
+(15, '', 0, '', 15),
+(16, '', 0, '', 16),
+(17, 'you are awesome', 1, '', 17);
 
 --
 -- Indexes for dumped tables
@@ -494,7 +533,7 @@ ALTER TABLE `words`
 -- AUTO_INCREMENT for table `assigned`
 --
 ALTER TABLE `assigned`
-  MODIFY `assign_key` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `assign_key` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `character`
@@ -506,7 +545,7 @@ ALTER TABLE `character`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `color`
@@ -518,37 +557,37 @@ ALTER TABLE `color`
 -- AUTO_INCREMENT for table `draggable_options`
 --
 ALTER TABLE `draggable_options`
-  MODIFY `drag_option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `drag_option_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `mcq_answer`
 --
 ALTER TABLE `mcq_answer`
-  MODIFY `mcq_answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `mcq_answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `true_false_options`
 --
 ALTER TABLE `true_false_options`
-  MODIFY `tfoption_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tfoption_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `words`
 --
 ALTER TABLE `words`
-  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
