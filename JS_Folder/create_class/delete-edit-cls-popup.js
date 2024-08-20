@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Close all popups
     function closeAllPopups() {
-        // hidePopup(addLessonPopup);
+        // hidePopup(addLessonPopup); //removing the add lesson pop up when click out fo t5he container
         hidePopup(editPopup);
         hidePopup(deletePopup);
     }
