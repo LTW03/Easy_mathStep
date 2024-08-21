@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password | E.M.S</title>
     <link rel="stylesheet" href="./Css_folder/forget_pass.css">
+    <link rel="short icon" type= "x-icon" href="src/logo.png">
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>

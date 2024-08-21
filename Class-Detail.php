@@ -9,7 +9,7 @@
       <!-- <link rel="stylesheet" href="CSS-folder/popup.css"> -->
       <link rel="stylesheet" href="Css_folder/class_page.css">
       <link rel="stylesheet" href="./Css_folder/Class-Detail.css">
-      
+      <link rel="short icon" type= "x-icon" href="src/logo.png">
       <!--this link is link to the icon website, then can use the icon without download the icon-->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"> 
 

@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="short icon" type= "x-icon" href="src/logo.png">
     <title>MCQs Game | E.M.S</title>
     <link rel="stylesheet" href="Css_folder/games.css">
 </head>

@@ -35,6 +35,7 @@ if ($studentEmail && $lessonId) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Choose Class</title>
+    <link rel="short icon" type= "x-icon" href="src/logo.png">
     <link rel="stylesheet" href="./Css_folder/Choose_classes.css">
     <link
         rel="stylesheet"

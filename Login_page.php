@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Login | E.M.S</title>
+    <link rel="short icon" type= "x-icon" href="src/logo.png">
     <link rel="stylesheet" href="./Css_folder/login_page.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>

@@ -9,12 +9,13 @@ $incorrectQuestions = isset($_GET['incorrectQuestions']) ? json_decode($_GET['in
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Results | E.M.S</title>
+    <link rel="short icon" type= "x-icon" href="src/logo.png">
     <link rel="stylesheet" href="Css_folder/games.css">
 </head>
 <body>
     <div class="results-container">
         <h1>Your Quiz Results</h1>
-        <p>You got <?php echo htmlspecialchars($score); ?> correct out of <?php echo htmlspecialchars($score + count($incorrectQuestions)); ?> questions.</p>
+        <p>You got <?php echo htmlspecialchars($score); marks ?></p>
         <ul>
             <?php if (count($incorrectQuestions) > 0): ?>
                 <?php foreach ($incorrectQuestions as $question): ?>

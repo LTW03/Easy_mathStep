@@ -6,6 +6,7 @@
     <title>Setting Page | E.M.S</title>
     <link rel="stylesheet" href="./Css_folder/teacher_base.css">
     <link rel="stylesheet" href="./Css_folder/SettingPage.css">
+    <link rel="short icon" type= "x-icon" href="src/logo.png">
 
 
 
