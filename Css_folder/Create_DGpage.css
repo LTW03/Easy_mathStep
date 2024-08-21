@@ -60,6 +60,7 @@ body {
     height: 40px;
     border: none;
     padding: 0px 20px;
+    margin-left: 10px;
     background-color: var(--btn-backgrond);
     color: white;
     margin-top: 5px;
@@ -326,6 +327,69 @@ body {
 .dg_optiontxt{
     display: flex;
     gap: 3px;
+}
+.rightside{
+    display: flex;
+}
+/* Help Button */
+.help_btn {
+    display: flex;
+    align-items: center;
+}
+
+.help_btn button {
+    background-color: var(--btn-backgrond);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background-color 0.3s;
+}
+
+.help_btn button:hover {
+    background-color: #333;
+}
+
+/* Help Modal */
+.help_modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.help_modal_content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.help_modal_content video {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.help_modal_close {
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.help_modal_close:hover {
+    color: red;
 }
 
 @keyframes spin {

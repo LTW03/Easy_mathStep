@@ -283,3 +283,29 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error('Back button not found.');
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const helpBtn = document.getElementById('helpBtn');
+    const helpModal = document.getElementById('helpModal');
+    const helpModalClose = document.querySelector('.help_modal_close');
+    const video = helpModal.querySelector('video');
+
+    helpBtn.addEventListener('click', function () {
+        helpModal.style.display = 'flex';
+    });
+
+    helpModalClose.addEventListener('click', function () {
+        helpModal.style.display = 'none';
+        video.pause();  // Stop the video
+        video.currentTime = 0;  // Reset the video to the beginning
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === helpModal) {
+            helpModal.style.display = 'none';
+            video.pause();  // Stop the video
+            video.currentTime = 0;  // Reset the video to the beginning
+        }
+    });
+});
