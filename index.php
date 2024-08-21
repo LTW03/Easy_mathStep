@@ -130,7 +130,7 @@
                             </li>
 
                         </ul>
-                        <button class="btn">View All</button>
+                        <button class="btn" onclick="povpage()">View All</button>
                       </div>
                 </div>
             </div>
@@ -173,4 +173,9 @@
         </div>
     </footer>
 </body>
+<script>
+    function povpage(){
+        window.location.href = "./userguide_pov.html";
+    }
+</script>
 </html>
